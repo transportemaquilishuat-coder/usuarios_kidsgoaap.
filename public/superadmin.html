@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Panel | Superadministrador</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+</head>
+
+<body>
+    <div class="app-shell">
+        <aside class="sidebar">
+            <div class="sidebar__brand">
+                <h2>Transporte Escolar</h2>
+                <p id="roleBadge">Superadministrador</p>
+            </div>
+            <nav class="sidebar__nav">
+                <button class="nav-item active" data-module="dashboard">Inicio</button>
+                <button class="nav-item" data-module="rutas">Rutas</button>
+                <button class="nav-item" data-module="alumnos">Alumnos</button>
+                <button class="nav-item" data-module="conductores">Conductores</button>
+                <button class="nav-item" data-module="pagos">Pagos</button>
+                <button class="nav-item" data-module="reportes">Reportes</button>
+            </nav>
+            <div class="sidebar__footer">
+                <span id="userNameLabel" class="user-pill">Cargando...</span>
+                <a class="link" href="/">Cerrar sesión</a>
+            </div>
+        </aside>
+
+        <main class="main-panel">
+            <header class="topbar">
+                <div>
+                    <p class="eyebrow">Panel operativo</p>
+                    <h1 id="welcomeTitle">Bienvenido</h1>
+                </div>
+                <div class="topbar__actions">
+                    <span class="status-pill">● Online</span>
+                </div>
+            </header>
+
+            <section id="dashboard" class="module-view active">
+                <div class="hero-card">
+                    <h2>Resumen global del sistema</h2>
+                    <p>Vista centralizada para instituciones, rutas, conductores, pagos y reportes.</p>
+                </div>
+                <div class="stats-grid">
+                    <article class="stat-card">
+                        <h3>24</h3>
+                        <p>Colegios</p>
+                    </article>
+                    <article class="stat-card">
+                        <h3>320</h3>
+                        <p>Estudiantes</p>
+                    </article>
+                    <article class="stat-card">
+                        <h3>18</h3>
+                        <p>Conductores</p>
+                    </article>
+                    <article class="stat-card">
+                        <h3>5</h3>
+                        <p>Alertas críticas</p>
+                    </article>
+                </div>
+            </section>
+
+            <section id="rutas" class="module-view">
+                <h2>Gestión de rutas</h2>
+                <div class="module-grid">
+                    <article class="panel">
+                        <h3>Rutas del sistema</h3>
+                        <ul>
+                            <li>Ruta 01 · 8 colegios</li>
+                            <li>Ruta 02 · 6 colegios</li>
+                            <li>Ruta 03 · 10 colegios</li>
+                        </ul>
+                    </article>
+                    <article class="panel">
+                        <h3>Monitoreo</h3>
+                        <ul>
+                            <li>Seguimiento global</li>
+                            <li>Desvíos críticos</li>
+                            <li>Estado de flotilla</li>
+                        </ul>
+                    </article>
+                </div>
+            </section>
+
+            <section id="alumnos" class="module-view">
+                <h2>Alumnos y padres</h2>
+                <div class="module-grid">
+                    <article class="panel">
+                        <h3>Usuarios activos</h3>
+                        <ul>
+                            <li>320 alumnos</li>
+                            <li>180 padres</li>
+                            <li>24 instituciones</li>
+                        </ul>
+                    </article>
+                    <article class="panel">
+                        <h3>Vinculaciones</h3>
+                        <ul>
+                            <li>Vinculaciones recientes</li>
+                            <li>Solicitudes pendientes</li>
+                            <li>Errores de registro</li>
+                        </ul>
+                    </article>
+                </div>
+            </section>
+
+            <section id="conductores" class="module-view">
+                <h2>Conductores</h2>
+                <div class="module-grid">
+                    <article class="panel">
+                        <h3>Flota</h3>
+                        <ul>
+                            <li>18 conductores registrados</li>
+                            <li>14 activos</li>
+                            <li>4 en descanso</li>
+                        </ul>
+                    </article>
+                    <article class="panel">
+                        <h3>Eventos</h3>
+                        <ul>
+                            <li>Eventos globales</li>
+                            <li>Incidencias por ruta</li>
+                            <li>Desvíos críticos</li>
+                        </ul>
+                    </article>
+                </div>
+            </section>
+
+            <section id="pagos" class="module-view">
+                <h2>Pagos</h2>
+                <div class="module-grid">
+                    <article class="panel">
+                        <h3>Resumen financiero</h3>
+                        <ul>
+                            <li>Pagos procesados</li>
+                            <li>Morosidad global</li>
+                            <li>Pagos pendientes</li>
+                        </ul>
+                    </article>
+                    <article class="panel">
+                        <h3>Operación</h3>
+                        <ul>
+                            <li>Conciliaciones</li>
+                            <li>Alertas de cobro</li>
+                            <li>Historial</li>
+                        </ul>
+                    </article>
+                </div>
+            </section>
+
+            <section id="reportes" class="module-view">
+                <h2>Reportes</h2>
+                <div class="module-grid">
+                    <article class="panel">
+                        <h3>Indicadores</h3>
+                        <ul>
+                            <li>Rendimiento por colegio</li>
+                            <li>Seguimiento por zona</li>
+                            <li>Auditoría general</li>
+                        </ul>
+                    </article>
+                    <article class="panel">
+                        <h3>Administración</h3>
+                        <ul>
+                            <li>Usuarios y permisos</li>
+                            <li>Configuración central</li>
+                            <li>Seguridad</li>
+                        </ul>
+                    </article>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="/api-config.js"></script>
+    <script src="/js/app.js"></script>
+</body>
+
+</html>

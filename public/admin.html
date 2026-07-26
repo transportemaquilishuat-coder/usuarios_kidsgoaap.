@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Panel | Administrador de colegio</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+</head>
+
+<body>
+    <div class="app-shell">
+        <aside class="sidebar">
+            <div class="sidebar__brand">
+                <h2>Transporte Escolar</h2>
+                <p id="roleBadge">Administrador de colegio</p>
+            </div>
+            <nav class="sidebar__nav">
+                <button class="nav-item active" data-module="dashboard">Inicio</button>
+                <button class="nav-item" data-module="rutas">Rutas</button>
+                <button class="nav-item" data-module="alumnos">Alumnos</button>
+                <button class="nav-item" data-module="conductores">Conductores</button>
+                <button class="nav-item" data-module="pagos">Pagos</button>
+                <button class="nav-item" data-module="reportes">Reportes</button>
+            </nav>
+            <div class="sidebar__footer">
+                <span id="userNameLabel" class="user-pill">Cargando...</span>
+                <a class="link" href="/">Cerrar sesión</a>
+            </div>
+        </aside>
+
+        <main class="main-panel">
+            <header class="topbar">
+                <div>
+                    <p class="eyebrow">Panel operativo</p>
+                    <h1 id="welcomeTitle">Bienvenido</h1>
+                </div>
+                <div class="topbar__actions">
+                    <span class="status-pill">● Online</span>
+                </div>
+            </header>
+
+            <section id="dashboard" class="module-view active">
+                <div class="hero-card">
+                    <h2>Resumen del día</h2>
+                    <p>Gestión centralizada para rutas, estudiantes, conductores, pagos y alertas.</p>
+                </div>
+                <div class="stats-grid">
+                    <article class="stat-card">
+                        <h3>12</h3>
+                        <p>Rutas activas</p>
+                    </article>
+                    <article class="stat-card">
+                        <h3>84</h3>
+                        <p>Estudiantes</p>
+                    </article>
+                    <article class="stat-card">
+                        <h3>7</h3>
+                        <p>Conductores</p>
+                    </article>
+                    <article class="stat-card">
+                        <h3>3</h3>
+                        <p>Alertas</p>
+                    </article>
+                </div>
+            </section>
+
+            <section id="rutas" class="module-view">
+                <h2>Gestión de rutas</h2>
+                <div class="module-grid">
+                    <article class="panel">
+                        <h3>Rutas programadas</h3>
+                        <ul>
+                            <li>Ruta Norte · 08:00</li>
+                            <li>Ruta Sur · 09:30</li>
+                            <li>Ruta Este · 11:00</li>
+                        </ul>
+                    </article>
+                    <article class="panel">
+                        <h3>Seguimiento</h3>
+                        <ul>
+                            <li>Ubicación en tiempo real</li>
+                            <li>Paradas confirmadas</li>
+                            <li>Desvíos detectados</li>
+                        </ul>
+                    </article>
+                </div>
+            </section>
+
+            <section id="alumnos" class="module-view">
+                <h2>Alumnos y padres</h2>
+                <div class="module-grid">
+                    <article class="panel">
+                        <h3>Estudiantes</h3>
+                        <ul>
+                            <li>84 alumnos activos</li>
+                            <li>12 nuevos este mes</li>
+                            <li>6 pendientes de vinculación</li>
+                        </ul>
+                    </article>
+                    <article class="panel">
+                        <h3>Padres</h3>
+                        <ul>
+                            <li>Mensajes enviados</li>
+                            <li>Solicitudes de cambio</li>
+                            <li>Asistencia reportada</li>
+                        </ul>
+                    </article>
+                </div>
+            </section>
+
+            <section id="conductores" class="module-view">
+                <h2>Conductores</h2>
+                <div class="module-grid">
+                    <article class="panel">
+                        <h3>Conductores activos</h3>
+                        <ul>
+                            <li>Juan Pérez · Ruta Norte</li>
+                            <li>María López · Ruta Sur</li>
+                            <li>Pedro Ruiz · Ruta Este</li>
+                        </ul>
+                    </article>
+                    <article class="panel">
+                        <h3>Eventos</h3>
+                        <ul>
+                            <li>2 incidentes registrados</li>
+                            <li>1 desvío detectado</li>
+                            <li>3 llegadas tardías</li>
+                        </ul>
+                    </article>
+                </div>
+            </section>
+
+            <section id="pagos" class="module-view">
+                <h2>Pagos</h2>
+                <div class="module-grid">
+                    <article class="panel">
+                        <h3>Estado de cuotas</h3>
+                        <ul>
+                            <li>65 al día</li>
+                            <li>12 pendientes</li>
+                            <li>7 morosos</li>
+                        </ul>
+                    </article>
+                    <article class="panel">
+                        <h3>Pagos recientes</h3>
+                        <ul>
+                            <li>Transferencia confirmada</li>
+                            <li>Pago parcial recibido</li>
+                            <li>Pago atrasado</li>
+                        </ul>
+                    </article>
+                </div>
+            </section>
+
+            <section id="reportes" class="module-view">
+                <h2>Reportes</h2>
+                <div class="module-grid">
+                    <article class="panel">
+                        <h3>Resumen diario</h3>
+                        <ul>
+                            <li>Rutas completadas</li>
+                            <li>Alertas cerradas</li>
+                            <li>Indicadores del turno</li>
+                        </ul>
+                    </article>
+                    <article class="panel">
+                        <h3>Administración</h3>
+                        <ul>
+                            <li>Configuración del sistema</li>
+                            <li>Auditoría</li>
+                            <li>Permisos</li>
+                        </ul>
+                    </article>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="/api-config.js"></script>
+    <script src="/js/app.js"></script>
+</body>
+
+</html>
