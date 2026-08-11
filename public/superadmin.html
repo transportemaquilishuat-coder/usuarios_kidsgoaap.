@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Panel | Superadministrador</title>
+    <title data-i18n="superadmin.title">Panel | Superadministrador</title>
     <link rel="stylesheet" href="/css/styles.css" />
 </head>
 
@@ -16,23 +16,24 @@
                 <p id="roleBadge">Superadministrador</p>
             </div>
             <nav class="sidebar__nav">
-                <button class="nav-item active" data-module="dashboard">Inicio</button>
-                <button class="nav-item" data-module="rutas">Rutas</button>
-                <button class="nav-item" data-module="alumnos">Alumnos</button>
-                <button class="nav-item" data-module="conductores">Conductores</button>
-                <button class="nav-item" data-module="pagos">Pagos</button>
-                <button class="nav-item" data-module="reportes">Reportes</button>
+                <button class="nav-item active" data-module="dashboard" data-i18n="admin.navHome">Inicio</button>
+                <button class="nav-item" data-module="contenido" data-i18n="admin.navContent">Contenido</button>
+                <button class="nav-item" data-module="rutas" data-i18n="admin.navRoutes">Rutas</button>
+                <button class="nav-item" data-module="alumnos" data-i18n="admin.navStudents">Alumnos</button>
+                <button class="nav-item" data-module="conductores" data-i18n="admin.navDrivers">Conductores</button>
+                <button class="nav-item" data-module="pagos" data-i18n="admin.navPayments">Pagos</button>
+                <button class="nav-item" data-module="reportes" data-i18n="admin.navReports">Reportes</button>
             </nav>
             <div class="sidebar__footer">
                 <span id="userNameLabel" class="user-pill">Cargando...</span>
-                <a class="link" href="/">Cerrar sesión</a>
+                <a class="link" href="/" data-i18n="admin.logout">Cerrar sesión</a>
             </div>
         </aside>
 
         <main class="main-panel">
             <header class="topbar">
                 <div>
-                    <p class="eyebrow">Panel operativo</p>
+                    <p class="eyebrow" data-i18n="admin.panelEyebrow">Panel operativo</p>
                     <h1 id="welcomeTitle">Bienvenido</h1>
                 </div>
                 <div class="topbar__actions">
@@ -42,134 +43,146 @@
 
             <section id="dashboard" class="module-view active">
                 <div class="hero-card">
-                    <h2>Resumen global del sistema</h2>
-                    <p>Vista centralizada para instituciones, rutas, conductores, pagos y reportes.</p>
+                    <h2 data-i18n="superadmin.dashboardTitle">Resumen global del sistema</h2>
+                    <p data-i18n="superadmin.dashboardDescription">Vista centralizada para instituciones, rutas,
+                        conductores, pagos y reportes.</p>
                 </div>
                 <div class="stats-grid">
                     <article class="stat-card">
                         <h3>24</h3>
-                        <p>Colegios</p>
+                        <p data-i18n="superadmin.statSchools">Colegios</p>
                     </article>
                     <article class="stat-card">
                         <h3>320</h3>
-                        <p>Estudiantes</p>
+                        <p data-i18n="superadmin.statStudents">Estudiantes</p>
                     </article>
                     <article class="stat-card">
                         <h3>18</h3>
-                        <p>Conductores</p>
+                        <p data-i18n="superadmin.statDrivers">Conductores</p>
                     </article>
                     <article class="stat-card">
                         <h3>5</h3>
-                        <p>Alertas críticas</p>
+                        <p data-i18n="superadmin.statAlerts">Alertas críticas</p>
                     </article>
                 </div>
             </section>
 
+            <section id="contenido" class="module-view">
+                <h2 data-i18n="admin.contentTitle">Gestión de contenido</h2>
+                <form id="contentForm" class="manager-form">
+                    <label for="contentTitle" data-i18n="admin.contentTitleField">Título principal</label>
+                    <input id="contentTitle" name="contentTitle" type="text" />
+                    <label for="contentDescription" data-i18n="admin.contentDescriptionField">Descripción
+                        principal</label>
+                    <textarea id="contentDescription" name="contentDescription" rows="3"></textarea>
+                    <label for="contentImage" data-i18n="admin.contentImageField">URL de foto principal</label>
+                    <input id="contentImage" name="contentImage" type="url" />
+                    <label for="contentVideo" data-i18n="admin.contentVideoField">URL de video promocional</label>
+                    <input id="contentVideo" name="contentVideo" type="url" />
+                    <button class="btn btn--primary" type="submit" data-i18n="admin.contentSave">Guardar
+                        cambios</button>
+                </form>
+            </section>
+
             <section id="rutas" class="module-view">
-                <h2>Gestión de rutas</h2>
+                <h2 data-i18n="admin.routesTitle">Gestión de rutas</h2>
                 <div class="module-grid">
                     <article class="panel">
-                        <h3>Rutas del sistema</h3>
-                        <ul>
-                            <li>Ruta 01 · 8 colegios</li>
-                            <li>Ruta 02 · 6 colegios</li>
-                            <li>Ruta 03 · 10 colegios</li>
-                        </ul>
+                        <h3 data-i18n="admin.routesListTitle">Rutas del sistema</h3>
+                        <div id="rutasList" class="manager-list"></div>
                     </article>
                     <article class="panel">
-                        <h3>Monitoreo</h3>
-                        <ul>
-                            <li>Seguimiento global</li>
-                            <li>Desvíos críticos</li>
-                            <li>Estado de flotilla</li>
-                        </ul>
+                        <h3 data-i18n="admin.routesFormTitle">Nueva ruta</h3>
+                        <form id="rutasForm" class="manager-form compact-form">
+                            <input id="rutasNombre" name="nombre" type="text" placeholder="Ruta Norte" />
+                            <input id="rutasHorario" name="horario" type="text" placeholder="08:00" />
+                            <input id="rutasParada" name="parada" type="text" placeholder="Parada principal" />
+                            <input id="rutasEstado" name="estado" type="text" placeholder="En curso" />
+                            <button class="btn btn--primary" type="submit" data-i18n="admin.saveButton">Guardar</button>
+                        </form>
                     </article>
                 </div>
             </section>
 
             <section id="alumnos" class="module-view">
-                <h2>Alumnos y padres</h2>
+                <h2 data-i18n="admin.studentsTitle">Alumnos y padres</h2>
                 <div class="module-grid">
                     <article class="panel">
-                        <h3>Usuarios activos</h3>
-                        <ul>
-                            <li>320 alumnos</li>
-                            <li>180 padres</li>
-                            <li>24 instituciones</li>
-                        </ul>
+                        <h3 data-i18n="admin.studentsListTitle">Usuarios activos</h3>
+                        <div id="alumnosList" class="manager-list"></div>
                     </article>
                     <article class="panel">
-                        <h3>Vinculaciones</h3>
-                        <ul>
-                            <li>Vinculaciones recientes</li>
-                            <li>Solicitudes pendientes</li>
-                            <li>Errores de registro</li>
-                        </ul>
+                        <h3 data-i18n="admin.studentsFormTitle">Agregar alumno</h3>
+                        <form id="alumnosForm" class="manager-form compact-form">
+                            <input id="alumnosNombre" name="nombre" type="text" placeholder="Ana García" />
+                            <input id="alumnosGrado" name="grado" type="text" placeholder="8°" />
+                            <input id="alumnosRuta" name="ruta" type="text" placeholder="Ruta Norte" />
+                            <input id="alumnosEstado" name="estado" type="text" placeholder="Activo" />
+                            <button class="btn btn--primary" type="submit" data-i18n="admin.saveButton">Guardar</button>
+                        </form>
                     </article>
                 </div>
             </section>
 
             <section id="conductores" class="module-view">
-                <h2>Conductores</h2>
+                <h2 data-i18n="admin.driversTitle">Conductores</h2>
                 <div class="module-grid">
                     <article class="panel">
-                        <h3>Flota</h3>
-                        <ul>
-                            <li>18 conductores registrados</li>
-                            <li>14 activos</li>
-                            <li>4 en descanso</li>
-                        </ul>
+                        <h3 data-i18n="admin.driversListTitle">Flota</h3>
+                        <div id="conductoresList" class="manager-list"></div>
                     </article>
                     <article class="panel">
-                        <h3>Eventos</h3>
-                        <ul>
-                            <li>Eventos globales</li>
-                            <li>Incidencias por ruta</li>
-                            <li>Desvíos críticos</li>
-                        </ul>
+                        <h3 data-i18n="admin.driversFormTitle">Agregar conductor</h3>
+                        <form id="conductoresForm" class="manager-form compact-form">
+                            <input id="conductoresNombre" name="nombre" type="text" placeholder="Juan Pérez" />
+                            <input id="conductoresVehiculo" name="vehiculo" type="text" placeholder="Bus 01" />
+                            <input id="conductoresRuta" name="ruta" type="text" placeholder="Ruta Sur" />
+                            <input id="conductoresEstado" name="estado" type="text" placeholder="Disponible" />
+                            <button class="btn btn--primary" type="submit" data-i18n="admin.saveButton">Guardar</button>
+                        </form>
                     </article>
                 </div>
             </section>
 
             <section id="pagos" class="module-view">
-                <h2>Pagos</h2>
+                <h2 data-i18n="admin.paymentsTitle">Pagos</h2>
                 <div class="module-grid">
                     <article class="panel">
-                        <h3>Resumen financiero</h3>
+                        <h3 data-i18n="admin.paymentsSummaryTitle">Resumen financiero</h3>
                         <ul>
-                            <li>Pagos procesados</li>
-                            <li>Morosidad global</li>
-                            <li>Pagos pendientes</li>
+                            <li data-i18n="admin.paymentsSummary1">Pagos procesados</li>
+                            <li data-i18n="admin.paymentsSummary2">Morosidad global</li>
+                            <li data-i18n="admin.paymentsSummary3">Pagos pendientes</li>
                         </ul>
                     </article>
                     <article class="panel">
-                        <h3>Operación</h3>
+                        <h3 data-i18n="admin.paymentsRecentTitle">Operación</h3>
                         <ul>
-                            <li>Conciliaciones</li>
-                            <li>Alertas de cobro</li>
-                            <li>Historial</li>
+                            <li data-i18n="admin.paymentsRecent1">Conciliaciones</li>
+                            <li data-i18n="admin.paymentsRecent2">Alertas de cobro</li>
+                            <li data-i18n="admin.paymentsRecent3">Historial</li>
                         </ul>
                     </article>
                 </div>
             </section>
 
             <section id="reportes" class="module-view">
-                <h2>Reportes</h2>
+                <h2 data-i18n="admin.reportsTitle">Reportes</h2>
                 <div class="module-grid">
                     <article class="panel">
-                        <h3>Indicadores</h3>
+                        <h3 data-i18n="admin.reportsSummaryTitle">Indicadores</h3>
                         <ul>
-                            <li>Rendimiento por colegio</li>
-                            <li>Seguimiento por zona</li>
-                            <li>Auditoría general</li>
+                            <li data-i18n="admin.reportsSummary1">Rendimiento por colegio</li>
+                            <li data-i18n="admin.reportsSummary2">Seguimiento por zona</li>
+                            <li data-i18n="admin.reportsSummary3">Auditoría general</li>
                         </ul>
                     </article>
                     <article class="panel">
-                        <h3>Administración</h3>
+                        <h3 data-i18n="admin.reportsAdminTitle">Administración</h3>
                         <ul>
-                            <li>Usuarios y permisos</li>
-                            <li>Configuración central</li>
-                            <li>Seguridad</li>
+                            <li data-i18n="admin.reportsAdmin1">Usuarios y permisos</li>
+                            <li data-i18n="admin.reportsAdmin2">Configuración central</li>
+                            <li data-i18n="admin.reportsAdmin3">Seguridad</li>
                         </ul>
                     </article>
                 </div>

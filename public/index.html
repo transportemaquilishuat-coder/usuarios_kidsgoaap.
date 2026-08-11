@@ -4,44 +4,145 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Transporte Escolar | Portal Web</title>
+    <meta name="description"
+        content="KidsGo App - Plataforma moderna para gestión de transporte escolar, rutas, conductores y comunicación con familias." />
+    <meta name="theme-color" content="#2563eb" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="KidsGo" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta property="og:title" content="KidsGo App | Transporte Escolar" />
+    <meta property="og:description"
+        content="Una plataforma digital para gestionar rutas, alumnos, conductores y comunicación escolar." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.kidsgoapp.com" />
+    <title data-i18n="page.title">Transporte Escolar | Portal Web</title>
     <link rel="stylesheet" href="/css/styles.css" />
 </head>
 
 <body>
-    <header class="hero">
-        <div class="hero__content">
-            <p class="eyebrow">Portal de operación</p>
-            <h1>Gestión digital para transporte escolar</h1>
-            <p>
-                Una experiencia moderna para administrar rutas, conductores, estudiantes y alertas con un diseño pensado
-                para la operación diaria.
-            </p>
-            <div class="hero__actions">
-                <a class="btn btn--primary" href="/login.html">Ingresar al portal</a>
-                <a class="btn btn--ghost" href="/api/health">Ver estado de la API</a>
+    <header class="site-header">
+        <a class="brand" href="#top">Transporte Escolar</a>
+        <nav class="site-nav">
+            <a href="#servicios" data-i18n="nav.services">Servicios</a>
+            <a href="#beneficios" data-i18n="nav.benefits">Beneficios</a>
+            <a href="#contacto" data-i18n="nav.contact">Contacto</a>
+            <div class="lang-switcher" aria-label="Selector de idioma">
+                <button type="button" class="lang-chip" data-lang-switch="es">ES</button>
+                <button type="button" class="lang-chip" data-lang-switch="en">EN</button>
             </div>
-        </div>
-        <div class="hero__visual">
-            <img src="/img/WhatsApp Image 2026-07-26 at 1.59.57 PM.jpeg" alt="Ilustración de transporte escolar" />
-        </div>
+        </nav>
     </header>
 
-    <main class="container">
-        <section class="cards">
-            <article class="card">
-                <h2>Administrador de colegio</h2>
-                <p>Control de rutas, estudiantes, conductores y reportes operativos.</p>
-                <a href="/login.html?role=school" class="link">Entrar como colegio</a>
-            </article>
-            <article class="card">
-                <h2>Superadministrador</h2>
-                <p>Vista global para instituciones, usuarios, monitoreo y configuración.</p>
-                <a href="/login.html?role=superadmin" class="link">Entrar como superadmin</a>
-            </article>
+    <main class="scroll-page" id="top">
+        <section class="hero-section">
+            <div class="hero-copy">
+                <p class="eyebrow" data-i18n="hero.eyebrow">Plataforma de transporte escolar</p>
+                <h1 id="heroTitle" data-i18n="hero.title">Más control, menos incertidumbre en cada viaje.</h1>
+                <p id="heroDescription" data-i18n="hero.description">Una solución digital pensada para colegios,
+                    operadores y familias que buscan organización, trazabilidad y tranquilidad diaria.</p>
+                <div class="hero-actions">
+                    <a class="btn btn--primary" href="/login.html" data-i18n="hero.ctaPrimary">Entrar al panel</a>
+                    <a class="btn btn--ghost" href="/parent.html">Modo padre</a>
+                    <a class="btn btn--ghost" href="/driver.html">Modo conductor</a>
+                    <a class="btn btn--ghost" href="#servicios" data-i18n="hero.ctaSecondary">Ver servicios</a>
+                </div>
+                <div class="hero-highlights">
+                    <span data-i18n="hero.highlight1">Monitoreo en tiempo real</span>
+                    <span data-i18n="hero.highlight2">Comunicación centralizada</span>
+                    <span data-i18n="hero.highlight3">Alertas y reportes</span>
+                </div>
+            </div>
+            <div class="hero-media">
+                <img id="heroImage" src="/img/WhatsApp Image 2026-07-26 at 1.59.57 PM.jpeg"
+                    alt="Ilustración de transporte escolar" />
+                <div class="media-card">
+                    <p class="media-label" data-i18n="hero.mediaLabel">Contenido flexible</p>
+                    <p class="media-text" data-i18n="hero.mediaText">Actualiza fotografías, videos y textos desde el
+                        panel de administración.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="stats-strip" aria-label="Valores clave">
+            <div class="stat-pill">
+                <strong>24/7</strong>
+                <span data-i18n="stats.monitoring">Monitoreo continuo</span>
+            </div>
+            <div class="stat-pill">
+                <strong>100%</strong>
+                <span data-i18n="stats.visibility">Visibilidad operativa</span>
+            </div>
+            <div class="stat-pill">
+                <strong>5 min</strong>
+                <span data-i18n="stats.alerts">Alertas críticas</span>
+            </div>
+        </section>
+
+        <section id="servicios" class="content-section">
+            <div class="section-heading">
+                <p class="eyebrow" data-i18n="services.eyebrow">Servicios y funciones</p>
+                <h2 data-i18n="services.title">Todo lo que la plataforma hace posible</h2>
+            </div>
+            <div class="cards-grid">
+                <article class="card">
+                    <h3 data-i18n="services.routeTitle">Gestión de rutas</h3>
+                    <p data-i18n="services.routeText">Organiza recorridos, define paradas y mantiene el servicio
+                        alineado con la operación diaria.</p>
+                </article>
+                <article class="card">
+                    <h3 data-i18n="services.followTitle">Seguimiento operativo</h3>
+                    <p data-i18n="services.followText">Monitorea conductores, estados de viaje y alertas para responder
+                        con mayor agilidad.</p>
+                </article>
+                <article class="card">
+                    <h3 data-i18n="services.familyTitle">Comunicación con familias</h3>
+                    <p data-i18n="services.familyText">Facilita la información clara sobre el servicio y reduce la
+                        incertidumbre en cada traslado.</p>
+                </article>
+                <article class="card">
+                    <h3 data-i18n="services.reportsTitle">Reportes y control</h3>
+                    <p data-i18n="services.reportsText">Recopila información útil para tomar decisiones y mejorar la
+                        calidad del servicio.</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="beneficios" class="content-section alt-section">
+            <div class="section-heading">
+                <p class="eyebrow" data-i18n="about.eyebrow">Diseño moderno</p>
+                <h2 data-i18n="about.title">Una experiencia pensada para equipos, familias y directivos</h2>
+            </div>
+            <div class="split-grid">
+                <article class="card">
+                    <h3 data-i18n="about.listTitle">Lo que mejora con esta plataforma</h3>
+                    <ul>
+                        <li data-i18n="about.list1">Centraliza la operación diaria en una sola vista.</li>
+                        <li data-i18n="about.list2">Aumenta la confianza con información clara y oportuna.</li>
+                        <li data-i18n="about.list3">Permite administrar contenidos sin depender de terceros.</li>
+                    </ul>
+                </article>
+                <article class="card">
+                    <h3 data-i18n="about.videoTitle">Contenido multimedia</h3>
+                    <p data-i18n="about.videoText">Puedes actualizar fotografías, videos y textos desde el panel
+                        administrativo para mantener la web siempre fresca.</p>
+                    <div class="video-frame">
+                        <iframe id="heroVideo" src="https://www.youtube.com/embed/ScMzIvxBSi4?rel=0"
+                            title="Video demostración"></iframe>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section id="contacto" class="cta-section">
+            <h2 data-i18n="cta.title">Accede al panel para ver la experiencia completa</h2>
+            <p data-i18n="cta.description">Una vez que inicies sesión, podrás ver el entorno de administración y las
+                herramientas disponibles para cada usuario.</p>
+            <a class="btn btn--primary" href="/login.html" data-i18n="cta.button">Ingresar</a>
         </section>
     </main>
 
+    <script src="/api-config.js"></script>
     <script src="/js/app.js"></script>
 </body>
 

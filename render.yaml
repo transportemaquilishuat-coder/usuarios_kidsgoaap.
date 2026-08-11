@@ -1,12 +1,17 @@
 services:
   - type: web
-    name: transporte-escolar-web
+    name: kidsgoapp-web
     env: node
     plan: free
     buildCommand: npm install
     startCommand: npm start
+    domains:
+      - name: kidsgoapp.com
+      - name: www.kidsgoapp.com
     envVars:
       - key: PORT
         value: 3000
       - key: BACKEND_URL
-        value: https://tu-backend.onrender.com
+        value: https://transporte-backend-prod.onrender.com
+      - key: SITE_URL
+        value: https://www.kidsgoapp.com

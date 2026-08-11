@@ -1,4 +1,4 @@
 window.transporteEscolarConfig = window.transporteEscolarConfig || {
-    apiBaseUrl: 'http://localhost:8080',
+    apiBaseUrl: '',
     authEndpoint: '/api/auth/login'
 };
