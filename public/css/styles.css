@@ -104,6 +104,12 @@ a {
     line-height: 1.7;
 }
 
+.hero-message {
+    border-left: 4px solid var(--accent);
+    padding-left: 1rem;
+    font-weight: 700;
+}
+
 .hero-actions {
     display: flex;
     gap: 1rem;
@@ -191,10 +197,17 @@ a {
 
 .content-section {
     margin-bottom: 2rem;
+    padding: 1.4rem 0;
 }
 
 .alt-section {
-    padding-top: 1rem;
+    background: rgba(255, 255, 255, 0.58);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    padding-left: max(1.25rem, calc(50vw - 600px));
+    padding-right: max(1.25rem, calc(50vw - 600px));
 }
 
 .section-heading {
@@ -228,6 +241,33 @@ a {
 .card ul {
     padding-left: 1rem;
     color: var(--muted);
+}
+
+.rich-copy {
+    max-width: 980px;
+    color: var(--muted);
+    line-height: 1.75;
+}
+
+.rich-copy p {
+    margin: 0 0 1rem;
+}
+
+.feature-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+    padding: 0;
+    margin: 1rem 0 0;
+    list-style: none;
+}
+
+.feature-list li {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 0.85rem 0.95rem;
+    box-shadow: 0 8px 18px rgba(15, 23, 42, 0.04);
 }
 
 .video-frame {
@@ -419,6 +459,33 @@ a {
     gap: 0.6rem;
 }
 
+.content-fields {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.field-group {
+    display: grid;
+    gap: 0.45rem;
+}
+
+.field-group label {
+    color: var(--text);
+    font-weight: 700;
+}
+
+.field-group textarea {
+    min-height: 130px;
+    resize: vertical;
+}
+
+.form-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
 input,
 textarea,
 select {
@@ -493,6 +560,20 @@ select {
     font-weight: 700;
 }
 
+.site-footer {
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    display: grid;
+    gap: 0.35rem;
+    margin-top: 2rem;
+    padding: 1.5rem 0 0;
+    white-space: pre-line;
+}
+
+.site-footer strong {
+    color: var(--primary);
+}
+
 @media (max-width: 900px) {
     .app-shell {
         flex-direction: column;
@@ -504,8 +585,10 @@ select {
 
     .stats-grid,
     .module-grid,
+    .content-fields,
     .cards-grid,
     .split-grid,
+    .feature-list,
     .stats-strip,
     .hero-section {
         grid-template-columns: 1fr;

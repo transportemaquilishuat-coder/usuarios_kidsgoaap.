@@ -70,17 +70,14 @@
             <section id="contenido" class="module-view">
                 <h2 data-i18n="admin.contentTitle">Gestión de contenido</h2>
                 <form id="contentForm" class="manager-form">
-                    <label for="contentTitle" data-i18n="admin.contentTitleField">Título principal</label>
-                    <input id="contentTitle" name="contentTitle" type="text" />
-                    <label for="contentDescription" data-i18n="admin.contentDescriptionField">Descripción
-                        principal</label>
-                    <textarea id="contentDescription" name="contentDescription" rows="3"></textarea>
-                    <label for="contentImage" data-i18n="admin.contentImageField">URL de foto principal</label>
-                    <input id="contentImage" name="contentImage" type="url" />
-                    <label for="contentVideo" data-i18n="admin.contentVideoField">URL de video promocional</label>
-                    <input id="contentVideo" name="contentVideo" type="url" />
-                    <button class="btn btn--primary" type="submit" data-i18n="admin.contentSave">Guardar
-                        cambios</button>
+                    <p class="helper-text">Edita la información pública de marca, producto, servicios, innovación,
+                        seguridad, tecnología y preguntas frecuentes.</p>
+                    <div id="contentFields" class="content-fields"></div>
+                    <div class="form-actions">
+                        <button class="btn btn--primary" type="submit" data-i18n="admin.contentSave">Guardar
+                            cambios</button>
+                        <button id="resetContentButton" class="btn btn--ghost" type="button">Restaurar contenido</button>
+                    </div>
                 </form>
             </section>
 

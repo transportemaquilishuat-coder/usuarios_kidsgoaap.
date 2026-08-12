@@ -3,12 +3,12 @@ const role = params.get('role');
 
 const translations = {
     es: {
-        page: { title: 'Transporte Escolar | Portal Web' },
+        page: { title: 'KidsGo! | Smart School Mobility' },
         nav: { services: 'Servicios', benefits: 'Beneficios', contact: 'Contacto' },
         hero: {
-            eyebrow: 'Plataforma de transporte escolar',
-            title: 'Más control, menos incertidumbre en cada viaje.',
-            description: 'Una solución digital pensada para colegios, operadores y familias que buscan organización, trazabilidad y tranquilidad diaria.',
+            eyebrow: 'Smart School Mobility',
+            title: 'El transporte escolar, ahora más inteligente.',
+            description: 'KidsGo! conecta a familias, colegios y transporte escolar para que cada trayecto sea más seguro, organizado y tranquilo.',
             ctaPrimary: 'Entrar al panel',
             ctaSecondary: 'Ver servicios',
             highlight1: 'Monitoreo en tiempo real',
@@ -126,7 +126,7 @@ const translations = {
         }
     },
     en: {
-        page: { title: 'School Transportation | Web Portal' },
+        page: { title: 'KidsGo! | Smart School Mobility' },
         nav: { services: 'Services', benefits: 'Benefits', contact: 'Contact' },
         hero: {
             eyebrow: 'School transportation platform',
@@ -250,6 +250,108 @@ const translations = {
     }
 };
 
+const SITE_CONTENT_FIELDS = [
+    { key: 'brandName', label: 'Marca', type: 'text' },
+    { key: 'brandTagline', label: 'Lema', type: 'text' },
+    { key: 'brandConcept', label: 'Concepto de marca', type: 'textarea' },
+    { key: 'brandPersonality', label: 'Personalidad de marca', type: 'textarea' },
+    { key: 'tone', label: 'Tono de comunicación', type: 'textarea' },
+    { key: 'heroEyebrow', label: 'Etiqueta del hero', type: 'text' },
+    { key: 'heroTitle', label: 'Título principal', type: 'text' },
+    { key: 'heroDescription', label: 'Subtítulo', type: 'textarea' },
+    { key: 'heroMessage', label: 'Mensaje emocional', type: 'textarea' },
+    { key: 'heroImage', label: 'URL de foto principal', type: 'url' },
+    { key: 'heroVideo', label: 'URL de video promocional', type: 'url' },
+    { key: 'primaryCta', label: 'CTA principal', type: 'text' },
+    { key: 'schoolCta', label: 'CTA colegios', type: 'text' },
+    { key: 'transportCta', label: 'CTA transportistas', type: 'text' },
+    { key: 'problemTitle', label: 'Título: problema', type: 'text' },
+    { key: 'problemBody', label: 'Contenido: problema', type: 'textarea' },
+    { key: 'solutionTitle', label: 'Título: solución', type: 'text' },
+    { key: 'solutionBody', label: 'Contenido: solución', type: 'textarea' },
+    { key: 'howTitle', label: 'Título: cómo funciona', type: 'text' },
+    { key: 'howSteps', label: 'Pasos de funcionamiento', type: 'textarea' },
+    { key: 'featuresTitle', label: 'Título: funciones actuales', type: 'text' },
+    { key: 'features', label: 'Funciones actuales', type: 'textarea' },
+    { key: 'innovationTitle', label: 'Título: innovación', type: 'text' },
+    { key: 'innovationBody', label: 'Contenido: innovación', type: 'textarea' },
+    { key: 'smartBandTitle', label: 'Título: SmartBand', type: 'text' },
+    { key: 'smartBandBody', label: 'Contenido: SmartBand', type: 'textarea' },
+    { key: 'smartCampusTitle', label: 'Título: Smart Campus', type: 'text' },
+    { key: 'smartCampusBody', label: 'Contenido: Smart Campus', type: 'textarea' },
+    { key: 'audiencesTitle', label: 'Título: públicos', type: 'text' },
+    { key: 'audiences', label: 'Padres, colegios, transportistas y estudiantes', type: 'textarea' },
+    { key: 'securityTitle', label: 'Título: seguridad', type: 'text' },
+    { key: 'securityBody', label: 'Contenido: seguridad', type: 'textarea' },
+    { key: 'technologyTitle', label: 'Título: tecnología', type: 'text' },
+    { key: 'technologyBody', label: 'Contenido: tecnología', type: 'textarea' },
+    { key: 'roadmapTitle', label: 'Título: desarrollo por etapas', type: 'text' },
+    { key: 'roadmap', label: 'Etapas', type: 'textarea' },
+    { key: 'impactTitle', label: 'Título: impacto', type: 'text' },
+    { key: 'impactBody', label: 'Contenido: impacto', type: 'textarea' },
+    { key: 'aboutTitle', label: 'Título: sobre KidsGo!', type: 'text' },
+    { key: 'aboutBody', label: 'Contenido: sobre KidsGo!', type: 'textarea' },
+    { key: 'mission', label: 'Misión', type: 'textarea' },
+    { key: 'vision', label: 'Visión', type: 'textarea' },
+    { key: 'valueProposition', label: 'Propuesta de valor', type: 'textarea' },
+    { key: 'faq', label: 'Preguntas frecuentes', type: 'textarea' },
+    { key: 'finalCtaTitle', label: 'Título CTA final', type: 'text' },
+    { key: 'finalCtaBody', label: 'Texto CTA final', type: 'textarea' },
+    { key: 'footerBody', label: 'Footer y contacto', type: 'textarea' }
+];
+
+const DEFAULT_SITE_CONTENT = {
+    es: {
+        brandName: 'KidsGo!',
+        brandTagline: 'Smart School Mobility',
+        brandConcept: 'KidsGo! representa movimiento, seguridad, conexión y tranquilidad. Cuando tus hijos se mueven, tú quieres saber que todo está bien.',
+        brandPersonality: 'Cercana\nModerna\nSegura\nDinámica\nInnovadora\nFamiliar\nConfiable\nOptimista',
+        tone: 'KidsGo! habla a las familias de forma humana y clara. En lugar de explicar tecnología compleja, traduce cada función en tranquilidad, organización y decisiones sencillas para padres, colegios y transportistas.',
+        heroEyebrow: 'Smart School Mobility',
+        heroTitle: 'El transporte escolar, ahora más inteligente.',
+        heroDescription: 'KidsGo! conecta a familias, colegios y transporte escolar para que cada trayecto sea más seguro, organizado y tranquilo.',
+        heroMessage: 'Tú sabes dónde están tus hijos. Nosotros ayudamos a que lleguen bien. Desde que salen de casa hasta que llegan al colegio, KidsGo! acompaña cada trayecto y mantiene conectados a quienes más importan.',
+        heroImage: '/img/WhatsApp Image 2026-07-26 at 1.59.57 PM.jpeg',
+        heroVideo: 'https://www.youtube.com/embed/ScMzIvxBSi4?rel=0',
+        primaryCta: 'Quiero conocer KidsGo!',
+        schoolCta: 'Soy un colegio',
+        transportCta: 'Soy transportista',
+        problemTitle: 'Sabemos que cada mañana puede ser una carrera contra el tiempo.',
+        problemBody: '¿El transporte ya viene?\n¿Dónde está el bus?\n¿Ya llegó al colegio?\n¿Ya está cerca de la parada?\n¿Tenemos que llamar al conductor o avisar por WhatsApp?\n\nKidsGo! nace para hacer todo esto más sencillo: menos llamadas, menos mensajes, menos incertidumbre, más información, más organización y más tranquilidad.',
+        solutionTitle: 'Todo el transporte escolar en un solo lugar.',
+        solutionBody: 'KidsGo! conecta familias, estudiantes, colegios y transportistas en una misma plataforma.\n\nPara padres: consulta el recorrido de tu hijo y recibe información sin estar preguntando dónde está.\nPara colegios: visualiza y organiza el transporte escolar desde una plataforma pensada para el entorno educativo.\nPara transportistas: gestiona rutas y comunica eventos importantes de forma sencilla y segura.\nPara estudiantes: una experiencia de transporte más organizada, segura y adaptada a su vida escolar.',
+        howTitle: 'Así de sencillo.',
+        howSteps: '01 - El transporte inicia su recorrido: el conductor comienza la ruta y KidsGo! registra el avance.\n02 - KidsGo! calcula la proximidad: la plataforma identifica cuándo el transporte se aproxima al punto establecido.\n03 - Los padres reciben información: la familia consulta el estado desde la aplicación.\n04 - El estudiante recibe el aviso: la tecnología en desarrollo permitirá alertas mediante vibración y luz.\n05 - Todos están listos: menos esperas, menos llamadas, menos ruido y más organización.',
+        featuresTitle: 'Todo lo que necesitas para un transporte escolar más conectado.',
+        features: 'Seguimiento del transporte: consulta ubicación y estado de la ruta.\nAlertas para padres: recibe información cuando el transporte se aproxima o ocurre un evento importante.\nGestión de rutas: organiza recorridos de manera eficiente.\nVista para colegios: visión general del sistema de transporte y sus rutas.\nConexión con las familias: comunicación más organizada entre familias, colegios y transporte escolar.\nCarpool: coordinación de viajes compartidos entre familias de la comunidad escolar.\nSistema de puntos: incentivos para iniciativas de transporte compartido.',
+        innovationTitle: 'Y esto apenas comienza.',
+        innovationBody: 'KidsGo! ya resuelve necesidades de movilidad escolar y está construyendo, paso a paso, una plataforma más amplia para acompañar la experiencia escolar de los estudiantes.',
+        smartBandTitle: 'Una pulsera. Muchas posibilidades.',
+        smartBandBody: 'En desarrollo: KidsGo! SmartBand será una pulsera inteligente diseñada para estudiantes. Su primera misión será avisar cuando el transporte esté por llegar mediante vibración y luz.\n\nTambién se investiga tecnología LoRa para alertas locales de largo alcance y bajo consumo, sin depender necesariamente de Wi-Fi o conexión celular.',
+        smartCampusTitle: 'De transporte escolar a Smart Campus.',
+        smartCampusBody: 'En desarrollo: la misma pulsera que ayuda al estudiante a saber que su transporte está llegando podrá convertirse en una herramienta para su vida cotidiana dentro del colegio.\n\nPosibilidades futuras: identidad digital, registro de asistencia, control de acceso, biblioteca, cafetería, actividades y otros servicios escolares.',
+        audiencesTitle: 'KidsGo! para cada comunidad escolar.',
+        audiences: 'Para padres: más tranquilidad, organización, comunicación y autonomía para sus hijos.\nPara colegios: visualización de rutas, gestión de transporte, alertas, información centralizada e integración futura con Smart Campus.\nPara transportistas: rutas más organizadas, ubicación del transporte, comunicación con familias, alertas, pasajeros e historial de eventos.\nPara estudiantes: menos esperas, menos confusión, más información, más autonomía y más seguridad.',
+        securityTitle: 'La tecnología tiene sentido cuando genera confianza.',
+        securityBody: 'Diseñamos KidsGo! pensando en la seguridad y privacidad de los estudiantes.\n\nPrivacidad: la información debe manejarse de manera responsable.\nSeguridad: la plataforma incorpora mecanismos de protección y control de acceso.\nTransparencia: las familias deben saber qué información se recopila y para qué se utiliza.\nResponsabilidad: la tecnología apoya a familias y colegios, no reemplaza su criterio.',
+        technologyTitle: 'Tecnología que trabaja detrás de escena.',
+        technologyBody: 'KidsGo! combina aplicaciones móviles, servicios en la nube, geolocalización, comunicaciones inalámbricas y dispositivos inteligentes.\n\nTecnologías exploradas: GPS, geolocalización, geofencing, LoRa, NFC, BLE, IoT, cloud computing, aplicaciones móviles y sistemas de notificaciones.',
+        roadmapTitle: 'Estamos construyendo KidsGo! paso a paso.',
+        roadmap: 'Etapa 1 - Movilidad: disponible / MVP. Plataforma de transporte escolar.\nEtapa 2 - Alertas inteligentes: en desarrollo.\nEtapa 3 - SmartBand: en desarrollo. Pulsera inteligente con comunicación inalámbrica de bajo consumo.\nEtapa 4 - Identidad digital: en desarrollo.\nEtapa 5 - Servicios escolares: en desarrollo. Cafetería, biblioteca, asistencia y otros servicios.\nEtapa 6 - Smart Campus: visión futura.',
+        impactTitle: 'Un transporte escolar mejor también significa una ciudad mejor.',
+        impactBody: 'Cada vehículo escolar organizado representa una oportunidad para reducir viajes innecesarios, mejorar la coordinación y aprovechar mejor los recursos.\n\nKidsGo! busca reducir la congestión alrededor de los colegios, disminuir esperas, facilitar la comunicación, promover transporte compartido y mejorar la experiencia de las familias.',
+        aboutTitle: 'Nacimos de un problema real.',
+        aboutBody: 'KidsGo! nació de observar algo cotidiano: cada día miles de familias necesitan coordinar el transporte de sus hijos hacia y desde el colegio. Vimos llamadas, mensajes, esperas y procesos manuales. Entonces nos preguntamos: ¿y si pudiéramos hacer que todo esto fuera más sencillo?',
+        mission: 'Hacer que cada trayecto escolar sea más seguro, conectado y sencillo.',
+        vision: 'Construir la plataforma de movilidad y servicios inteligentes que conecte a las comunidades educativas.',
+        valueProposition: 'Para familias: más tranquilidad.\nPara colegios: más control y organización.\nPara transportistas: más eficiencia.\nPara estudiantes: más autonomía.\nPara todos: una comunidad escolar más conectada.',
+        faq: '¿Qué es KidsGo!? KidsGo! es una plataforma de tecnología educativa que conecta familias, colegios y transporte escolar.\n¿Puedo ver dónde está el transporte? Sí, la plataforma está diseñada para seguimiento de rutas y estado del transporte.\n¿La SmartBand ya está disponible? Actualmente está en fase de investigación y desarrollo.\n¿La pulsera necesita Internet? Estamos desarrollando alertas locales que puedan funcionar sin depender directamente de Wi-Fi o conexión celular.\n¿Puedo utilizar KidsGo! en mi colegio? Sí, KidsGo! está pensado para colegios, familias y proveedores de transporte escolar.',
+        finalCtaTitle: 'El próximo viaje de tu hijo puede ser más inteligente.',
+        finalCtaBody: 'Únete a la nueva generación de movilidad escolar.',
+        footerBody: 'KidsGo! - Smart School Mobility\nEl Salvador\nCorreo: [correo oficial]\nSitio web: [dominio]\nLegal: Política de Privacidad, Términos y Condiciones, Política de Cookies y Protección de datos.'
+    }
+};
+
 function readStoredUser() {
     try {
         return JSON.parse(localStorage.getItem('transporteEscolarUser') || '{}');
@@ -335,9 +437,137 @@ function saveContentSettings(settings) {
     localStorage.setItem('transporteEscolarContent', JSON.stringify(settings));
 }
 
-function renderContentSettings(language = getPreferredLanguage()) {
+function getDefaultSiteContent(language = getPreferredLanguage()) {
+    return DEFAULT_SITE_CONTENT[language] || DEFAULT_SITE_CONTENT.es;
+}
+
+function getActiveSiteContent(language = getPreferredLanguage()) {
     const settings = loadContentSettings();
-    const activeValues = settings[language] || settings.es || {};
+    return {
+        ...getDefaultSiteContent(language),
+        ...(settings[language] || settings.es || {})
+    };
+}
+
+function splitLines(value) {
+    return String(value || '')
+        .split('\n')
+        .map((line) => line.trim())
+        .filter(Boolean);
+}
+
+function createTextBlock(value) {
+    const fragment = document.createDocumentFragment();
+    const blocks = String(value || '').split('\n\n').map((block) => block.trim()).filter(Boolean);
+
+    blocks.forEach((block) => {
+        const paragraph = document.createElement('p');
+        paragraph.textContent = block;
+        fragment.appendChild(paragraph);
+    });
+
+    return fragment;
+}
+
+function createList(value, className = '') {
+    const list = document.createElement('ul');
+    if (className) {
+        list.className = className;
+    }
+
+    splitLines(value).forEach((line) => {
+        const item = document.createElement('li');
+        item.textContent = line;
+        list.appendChild(item);
+    });
+
+    return list;
+}
+
+function createContentSection({ id, eyebrow, title, body, list, variant = '' }) {
+    const section = document.createElement('section');
+    section.id = id;
+    section.className = `content-section ${variant}`.trim();
+
+    const heading = document.createElement('div');
+    heading.className = 'section-heading';
+
+    if (eyebrow) {
+        const eyebrowElement = document.createElement('p');
+        eyebrowElement.className = 'eyebrow';
+        eyebrowElement.textContent = eyebrow;
+        heading.appendChild(eyebrowElement);
+    }
+
+    const titleElement = document.createElement('h2');
+    titleElement.textContent = title;
+    heading.appendChild(titleElement);
+    section.appendChild(heading);
+
+    const bodyElement = document.createElement('div');
+    bodyElement.className = 'rich-copy';
+
+    if (body) {
+        bodyElement.appendChild(createTextBlock(body));
+    }
+
+    if (list) {
+        bodyElement.appendChild(createList(list, 'feature-list'));
+    }
+
+    section.appendChild(bodyElement);
+    return section;
+}
+
+function renderSiteSections(content) {
+    const container = document.getElementById('siteContentSections');
+    if (!container) {
+        return;
+    }
+
+    container.innerHTML = '';
+
+    const sections = [
+        { id: 'marca', eyebrow: content.brandTagline, title: content.brandName, body: `${content.brandConcept}\n\n${content.tone}`, list: content.brandPersonality },
+        { id: 'problema', eyebrow: 'El problema', title: content.problemTitle, body: content.problemBody, variant: 'alt-section' },
+        { id: 'solucion', eyebrow: 'La solución', title: content.solutionTitle, body: content.solutionBody },
+        { id: 'como-funciona', eyebrow: 'Cómo funciona', title: content.howTitle, list: content.howSteps, variant: 'alt-section' },
+        { id: 'funciones', eyebrow: 'Funciones actuales', title: content.featuresTitle, list: content.features },
+        { id: 'innovacion', eyebrow: 'Innovación', title: content.innovationTitle, body: content.innovationBody, variant: 'alt-section' },
+        { id: 'smartband', eyebrow: 'En desarrollo', title: content.smartBandTitle, body: content.smartBandBody },
+        { id: 'smart-campus', eyebrow: 'Visión futura', title: content.smartCampusTitle, body: content.smartCampusBody, variant: 'alt-section' },
+        { id: 'audiencias', eyebrow: 'Comunidad escolar', title: content.audiencesTitle, list: content.audiences },
+        { id: 'seguridad', eyebrow: 'Seguridad y privacidad', title: content.securityTitle, body: content.securityBody, variant: 'alt-section' },
+        { id: 'tecnologia', eyebrow: 'Tecnología', title: content.technologyTitle, body: content.technologyBody },
+        { id: 'etapas', eyebrow: 'Desarrollo por etapas', title: content.roadmapTitle, list: content.roadmap, variant: 'alt-section' },
+        { id: 'impacto', eyebrow: 'Impacto', title: content.impactTitle, body: content.impactBody },
+        { id: 'sobre-kidsgo', eyebrow: 'Sobre KidsGo!', title: content.aboutTitle, body: `${content.aboutBody}\n\nMisión: ${content.mission}\n\nVisión: ${content.vision}`, variant: 'alt-section' },
+        { id: 'valor', eyebrow: 'Propuesta de valor', title: 'Una comunidad escolar más conectada.', list: content.valueProposition },
+        { id: 'faq', eyebrow: 'Preguntas frecuentes', title: 'Respuestas claras para empezar.', list: content.faq, variant: 'alt-section' }
+    ];
+
+    sections.forEach((section) => {
+        container.appendChild(createContentSection(section));
+    });
+
+    const finalCta = document.getElementById('finalCtaTitle');
+    if (finalCta) {
+        finalCta.textContent = content.finalCtaTitle;
+    }
+
+    const finalCtaBody = document.getElementById('finalCtaBody');
+    if (finalCtaBody) {
+        finalCtaBody.textContent = content.finalCtaBody;
+    }
+
+    const footerBody = document.getElementById('footerBody');
+    if (footerBody) {
+        footerBody.textContent = content.footerBody;
+    }
+}
+
+function renderContentSettings(language = getPreferredLanguage()) {
+    const activeValues = getActiveSiteContent(language);
 
     const heroTitleElement = document.getElementById('heroTitle');
     if (heroTitleElement && activeValues.heroTitle) {
@@ -347,6 +577,16 @@ function renderContentSettings(language = getPreferredLanguage()) {
     const heroDescriptionElement = document.getElementById('heroDescription');
     if (heroDescriptionElement && activeValues.heroDescription) {
         heroDescriptionElement.textContent = activeValues.heroDescription;
+    }
+
+    const heroEyebrowElement = document.getElementById('heroEyebrow');
+    if (heroEyebrowElement && activeValues.heroEyebrow) {
+        heroEyebrowElement.textContent = activeValues.heroEyebrow;
+    }
+
+    const heroMessageElement = document.getElementById('heroMessage');
+    if (heroMessageElement && activeValues.heroMessage) {
+        heroMessageElement.textContent = activeValues.heroMessage;
     }
 
     const heroImageElement = document.getElementById('heroImage');
@@ -360,25 +600,44 @@ function renderContentSettings(language = getPreferredLanguage()) {
         heroVideoElement.src = activeValues.heroVideo;
     }
 
-    const contentTitleField = document.getElementById('contentTitle');
-    if (contentTitleField && activeValues.heroTitle) {
-        contentTitleField.value = activeValues.heroTitle;
+    const brandElements = document.querySelectorAll('[data-site-brand]');
+    brandElements.forEach((element) => {
+        element.textContent = activeValues.brandName;
+    });
+
+    const primaryCtaElements = document.querySelectorAll('[data-site-primary-cta]');
+    primaryCtaElements.forEach((element) => {
+        element.textContent = activeValues.primaryCta;
+    });
+
+    const schoolCtaElement = document.getElementById('schoolCta');
+    if (schoolCtaElement) {
+        schoolCtaElement.textContent = activeValues.schoolCta;
     }
 
-    const contentDescriptionField = document.getElementById('contentDescription');
-    if (contentDescriptionField && activeValues.heroDescription) {
-        contentDescriptionField.value = activeValues.heroDescription;
+    const transportCtaElement = document.getElementById('transportCta');
+    if (transportCtaElement) {
+        transportCtaElement.textContent = activeValues.transportCta;
     }
 
-    const contentImageField = document.getElementById('contentImage');
-    if (contentImageField && activeValues.heroImage) {
-        contentImageField.value = activeValues.heroImage;
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+        metaDescription.setAttribute('content', activeValues.heroDescription);
     }
 
-    const contentVideoField = document.getElementById('contentVideo');
-    if (contentVideoField && activeValues.heroVideo) {
-        contentVideoField.value = activeValues.heroVideo;
+    renderSiteSections(activeValues);
+
+    const contentForm = document.getElementById('contentForm');
+    if (!contentForm) {
+        return;
     }
+
+    SITE_CONTENT_FIELDS.forEach((field) => {
+        const input = document.getElementById(`siteContent_${field.key}`);
+        if (input) {
+            input.value = activeValues[field.key] || '';
+        }
+    });
 }
 
 function setUserInfo() {
@@ -585,20 +844,57 @@ function setupContentManager() {
         return;
     }
 
+    const fieldsContainer = document.getElementById('contentFields');
+    if (fieldsContainer && !fieldsContainer.children.length) {
+        SITE_CONTENT_FIELDS.forEach((field) => {
+            const group = document.createElement('div');
+            group.className = 'field-group';
+
+            const label = document.createElement('label');
+            label.setAttribute('for', `siteContent_${field.key}`);
+            label.textContent = field.label;
+
+            const input = field.type === 'textarea' ? document.createElement('textarea') : document.createElement('input');
+            input.id = `siteContent_${field.key}`;
+            input.name = field.key;
+
+            if (field.type === 'textarea') {
+                input.rows = 5;
+            } else {
+                input.type = field.type;
+            }
+
+            group.append(label, input);
+            fieldsContainer.appendChild(group);
+        });
+    }
+
+    renderContentSettings(getPreferredLanguage());
+
     contentForm.addEventListener('submit', (event) => {
         event.preventDefault();
         const language = getPreferredLanguage();
         const settings = loadContentSettings();
-        settings[language] = {
-            heroTitle: document.getElementById('contentTitle')?.value || '',
-            heroDescription: document.getElementById('contentDescription')?.value || '',
-            heroImage: document.getElementById('contentImage')?.value || '',
-            heroVideo: document.getElementById('contentVideo')?.value || ''
-        };
+        settings[language] = SITE_CONTENT_FIELDS.reduce((result, field) => {
+            result[field.key] = document.getElementById(`siteContent_${field.key}`)?.value || '';
+            return result;
+        }, {});
         saveContentSettings(settings);
         renderContentSettings(language);
         alert(language === 'en' ? 'Content updated successfully.' : 'Contenido actualizado correctamente.');
     });
+
+    const resetButton = document.getElementById('resetContentButton');
+    if (resetButton) {
+        resetButton.addEventListener('click', () => {
+            const language = getPreferredLanguage();
+            const settings = loadContentSettings();
+            delete settings[language];
+            saveContentSettings(settings);
+            renderContentSettings(language);
+            alert(language === 'en' ? 'Default content restored.' : 'Contenido predeterminado restaurado.');
+        });
+    }
 }
 
 function getStorageKey(moduleName) {
