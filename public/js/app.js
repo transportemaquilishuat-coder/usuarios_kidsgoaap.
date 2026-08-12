@@ -60,7 +60,7 @@ const translations = {
             emailLabel: 'Correo institucional',
             passwordLabel: 'Contraseña',
             submit: 'Ingresar',
-            helper: 'Si el backend no está disponible, el sistema continuará en modo demo para permitir la navegación.',
+            helper: 'El acceso se valida con el backend antes de abrir los paneles administrativos.',
             back: 'Volver al inicio'
         },
         admin: {
@@ -183,7 +183,7 @@ const translations = {
             emailLabel: 'Institutional email',
             passwordLabel: 'Password',
             submit: 'Sign in',
-            helper: 'If the backend is unavailable, the system will continue in demo mode to allow browsing.',
+            helper: 'Access is verified with the backend before opening administration panels.',
             back: 'Back to home'
         },
         admin: {
@@ -443,9 +443,46 @@ function persistDemoUser(selectedRole) {
 }
 
 function shouldUseDemoLogin(email, password) {
+    const config = window.transporteEscolarConfig || {};
+    if (!config.allowDemoLogin) {
+        return false;
+    }
+
     const normalizedEmail = (email || '').trim().toLowerCase();
     const normalizedPassword = (password || '').trim();
     return normalizedEmail === 'demo@kidsgo.app' && normalizedPassword === 'Test1234!';
+}
+
+function hasPanelAccess(expectedRole) {
+    const user = readStoredUser();
+    const token = localStorage.getItem('transporteEscolarToken') || '';
+    const config = window.transporteEscolarConfig || {};
+
+    if (!token || !user?.rol) {
+        return false;
+    }
+
+    if (user.source === 'demo' && !config.allowDemoLogin) {
+        return false;
+    }
+
+    if (expectedRole === 'superadmin') {
+        return user.rol === 'super_admin' || user.rol === 'superadmin';
+    }
+
+    return user.rol === 'school' || user.rol === 'school_admin' || user.rol === 'admin';
+}
+
+function requirePanelAccess() {
+    const expectedRole = getCurrentRole();
+    if (hasPanelAccess(expectedRole)) {
+        return true;
+    }
+
+    localStorage.removeItem('transporteEscolarToken');
+    localStorage.removeItem('transporteEscolarUser');
+    window.location.replace(`/login.html?role=${expectedRole}`);
+    return false;
 }
 
 async function loginWithBackend(selectedRole, email, password) {
@@ -466,8 +503,6 @@ async function loginWithBackend(selectedRole, email, password) {
             email,
             username: email,
             password,
-            role: selectedRole,
-            rol: selectedRole,
             identifier: email
         })
     });
@@ -533,6 +568,15 @@ function setupQuickActions() {
             window.location.href = '/driver.html';
         });
     }
+}
+
+function setupLogout() {
+    document.querySelectorAll('[data-i18n="admin.logout"]').forEach((link) => {
+        link.addEventListener('click', () => {
+            localStorage.removeItem('transporteEscolarToken');
+            localStorage.removeItem('transporteEscolarUser');
+        });
+    });
 }
 
 function setupContentManager() {
@@ -680,12 +724,6 @@ if (window.location.pathname === '/login.html') {
                 await loginWithBackend(selectedRole, email, password);
             } catch (error) {
                 const message = error?.message || 'No se pudo iniciar sesión.';
-                if (message.includes('Failed to fetch') || message.includes('ERR_NETWORK')) {
-                    persistDemoUser(selectedRole);
-                    window.location.href = selectedRole === 'superadmin' ? '/superadmin.html' : '/admin.html';
-                    return;
-                }
-
                 alert(message);
             }
         });
@@ -693,9 +731,14 @@ if (window.location.pathname === '/login.html') {
 }
 
 if (window.location.pathname === '/admin.html' || window.location.pathname === '/superadmin.html') {
+    if (!requirePanelAccess()) {
+        throw new Error('Acceso no autorizado.');
+    }
+
     setUserInfo();
     checkSystemHealth();
     setupLanguageSwitcher();
+    setupLogout();
     setupContentManager();
 
     document.querySelectorAll('.nav-item').forEach((button) => {
