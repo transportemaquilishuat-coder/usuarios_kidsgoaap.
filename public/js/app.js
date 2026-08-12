@@ -550,6 +550,8 @@ function renderSiteSections(content) {
         container.appendChild(createContentSection(section));
     });
 
+    setupRevealSections();
+
     const finalCta = document.getElementById('finalCtaTitle');
     if (finalCta) {
         finalCta.textContent = content.finalCtaTitle;
@@ -564,6 +566,29 @@ function renderSiteSections(content) {
     if (footerBody) {
         footerBody.textContent = content.footerBody;
     }
+}
+
+function setupRevealSections() {
+    const sections = document.querySelectorAll('.content-section');
+    if (!sections.length) {
+        return;
+    }
+
+    if (!('IntersectionObserver' in window)) {
+        sections.forEach((section) => section.classList.add('is-visible'));
+        return;
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.18 });
+
+    sections.forEach((section) => observer.observe(section));
 }
 
 function renderContentSettings(language = getPreferredLanguage()) {

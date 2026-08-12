@@ -1,14 +1,16 @@
 :root {
     color-scheme: light;
-    --bg: #f4f7fb;
+    --bg: #f6f8fb;
     --surface: #ffffff;
     --text: #10233d;
     --muted: #5e6f85;
-    --primary: #2563eb;
-    --primary-dark: #1d4ed8;
-    --accent: #0f766e;
-    --accent-soft: #ecfeff;
+    --primary: #10b981;
+    --primary-dark: #059669;
+    --accent: #f59e0b;
+    --accent-soft: #ecfdf5;
     --border: #dce7f4;
+    --ink: #0d0d0d;
+    --ink-soft: #1a1a1a;
 }
 
 * {
@@ -22,9 +24,15 @@ html {
 body {
     margin: 0;
     font-family: Inter, Arial, sans-serif;
-    background: linear-gradient(135deg, #eef4ff 0%, var(--bg) 100%);
+    background: var(--bg);
     color: var(--text);
     min-height: 100vh;
+}
+
+body:has(.scroll-page) {
+    background:
+        radial-gradient(circle at 78% 8%, rgba(16, 185, 129, 0.18), transparent 24rem),
+        linear-gradient(180deg, #0d0d0d 0 41rem, #f6f8fb 41rem 100%);
 }
 
 a {
@@ -40,9 +48,10 @@ a {
     justify-content: space-between;
     align-items: center;
     padding: 1rem 1.5rem;
-    background: rgba(255, 255, 255, 0.92);
+    background: rgba(13, 13, 13, 0.82);
     backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
 }
 
 .brand {
@@ -65,8 +74,9 @@ a {
 }
 
 .lang-chip {
-    border: 1px solid var(--border);
-    background: white;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.08);
+    color: white;
     border-radius: 999px;
     padding: 0.35rem 0.7rem;
     cursor: pointer;
@@ -75,7 +85,7 @@ a {
 
 .lang-chip.active {
     background: var(--primary);
-    color: white;
+    color: #062018;
     border-color: var(--primary);
 }
 
@@ -90,22 +100,26 @@ a {
     grid-template-columns: 1.1fr 0.9fr;
     gap: 2rem;
     align-items: center;
-    padding: 2rem 0 2.5rem;
+    min-height: calc(100vh - 7rem);
+    padding: 2rem 0 3rem;
+    color: white;
 }
 
 .hero-copy h1 {
-    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-size: clamp(2.45rem, 6vw, 5.6rem);
+    line-height: 0.96;
     margin: 0 0 0.8rem;
+    max-width: 11ch;
 }
 
 .hero-copy p {
     font-size: 1.05rem;
-    color: var(--muted);
+    color: rgba(255, 255, 255, 0.74);
     line-height: 1.7;
 }
 
 .hero-message {
-    border-left: 4px solid var(--accent);
+    border-left: 4px solid var(--primary);
     padding-left: 1rem;
     font-weight: 700;
 }
@@ -127,9 +141,9 @@ a {
 .hero-highlights span {
     padding: 0.55rem 0.8rem;
     border-radius: 999px;
-    background: rgba(37, 99, 235, 0.08);
-    color: var(--primary-dark);
-    border: 1px solid rgba(37, 99, 235, 0.12);
+    background: rgba(255, 255, 255, 0.08);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.12);
     font-weight: 600;
 }
 
@@ -138,11 +152,108 @@ a {
     gap: 1rem;
 }
 
+.route-visual {
+    position: relative;
+    min-height: 520px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 28px;
+    background: #151515;
+    box-shadow: 0 28px 80px rgba(0, 0, 0, 0.34);
+}
+
 .hero-media img {
+    height: 100%;
+    min-height: 520px;
     width: 100%;
-    border-radius: 24px;
-    box-shadow: 0 18px 40px rgba(15, 23, 42, 0.12);
     object-fit: cover;
+    filter: saturate(1.06) contrast(1.04);
+}
+
+.route-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(13, 13, 13, 0.05), rgba(13, 13, 13, 0.58));
+}
+
+.route-line {
+    position: absolute;
+    left: 12%;
+    right: 12%;
+    bottom: 26%;
+    height: 4px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+}
+
+.route-stop,
+.route-bus {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.route-stop {
+    width: 16px;
+    height: 16px;
+    border: 3px solid white;
+    border-radius: 999px;
+    background: var(--primary);
+    box-shadow: 0 0 0 8px rgba(16, 185, 129, 0.18);
+}
+
+.route-stop--home {
+    left: 0;
+}
+
+.route-stop--school {
+    right: 0;
+    background: var(--accent);
+}
+
+.route-bus {
+    left: 52%;
+    padding: 0.46rem 0.7rem;
+    border-radius: 999px;
+    background: white;
+    color: #111827;
+    font-size: 0.74rem;
+    font-weight: 900;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
+    animation: routeMove 5s ease-in-out infinite alternate;
+}
+
+.route-card {
+    position: absolute;
+    display: grid;
+    gap: 0.2rem;
+    max-width: 230px;
+    padding: 0.9rem 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 18px;
+    background: rgba(13, 13, 13, 0.72);
+    backdrop-filter: blur(12px);
+    color: white;
+}
+
+.route-card span {
+    color: rgba(255, 255, 255, 0.68);
+    font-size: 0.88rem;
+}
+
+.route-card--top {
+    top: 1.2rem;
+    left: 1.2rem;
+}
+
+.route-card--bottom {
+    right: 1.2rem;
+    bottom: 1.2rem;
+}
+
+@keyframes routeMove {
+    from { left: 22%; }
+    to { left: 72%; }
 }
 
 .media-card,
@@ -160,7 +271,8 @@ a {
 }
 
 .media-card {
-    background: linear-gradient(135deg, rgba(37, 99, 235, 0.12), rgba(15, 118, 110, 0.12));
+    background: #151515;
+    border-color: rgba(255, 255, 255, 0.1);
 }
 
 .media-label {
@@ -174,14 +286,14 @@ a {
 
 .media-text {
     margin: 0;
-    color: var(--muted);
+    color: rgba(255, 255, 255, 0.68);
 }
 
 .stats-strip {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 1rem;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
 }
 
 .stat-pill {
@@ -190,20 +302,30 @@ a {
     gap: 0.25rem;
     padding: 1rem 1.1rem;
     border-radius: 18px;
-    background: rgba(37, 99, 235, 0.08);
-    color: var(--primary-dark);
+    background: #121212;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.08);
     font-weight: 600;
 }
 
 .content-section {
-    margin-bottom: 2rem;
-    padding: 1.4rem 0;
+    margin-bottom: 0;
+    padding: 5.5rem 0;
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 700ms ease, transform 700ms ease;
+}
+
+.content-section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .alt-section {
-    background: rgba(255, 255, 255, 0.58);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
+    background: #111;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    color: white;
     margin-left: calc(50% - 50vw);
     margin-right: calc(50% - 50vw);
     padding-left: max(1.25rem, calc(50vw - 600px));
@@ -215,7 +337,8 @@ a {
 }
 
 .section-heading h2 {
-    font-size: 1.5rem;
+    font-size: clamp(1.7rem, 3vw, 3rem);
+    max-width: 780px;
     margin: 0;
 }
 
@@ -247,6 +370,11 @@ a {
     max-width: 980px;
     color: var(--muted);
     line-height: 1.75;
+    font-size: 1.02rem;
+}
+
+.alt-section .rich-copy {
+    color: rgba(255, 255, 255, 0.7);
 }
 
 .rich-copy p {
@@ -266,8 +394,14 @@ a {
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 14px;
-    padding: 0.85rem 0.95rem;
+    padding: 1rem;
     box-shadow: 0 8px 18px rgba(15, 23, 42, 0.04);
+}
+
+.alt-section .feature-list li {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.78);
 }
 
 .video-frame {
@@ -288,7 +422,8 @@ a {
     flex-direction: column;
     gap: 0.7rem;
     align-items: flex-start;
-    background: linear-gradient(135deg, rgba(37, 99, 235, 0.12), rgba(15, 118, 110, 0.12));
+    background: linear-gradient(135deg, #10b981, #111827);
+    color: white;
 }
 
 .cta-section h2 {
@@ -297,7 +432,7 @@ a {
 
 .cta-section p {
     margin: 0;
-    color: var(--muted);
+    color: rgba(255, 255, 255, 0.74);
 }
 
 .btn {
@@ -318,17 +453,18 @@ a {
 
 .btn--primary {
     background: var(--primary);
-    color: white;
+    color: #062018;
 }
 
 .btn--primary:hover {
     background: var(--primary-dark);
+    color: white;
 }
 
 .btn--ghost {
-    background: transparent;
-    border-color: var(--border);
-    color: var(--text);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.14);
+    color: currentColor;
 }
 
 .app-shell {
