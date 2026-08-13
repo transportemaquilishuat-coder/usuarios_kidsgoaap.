@@ -20,9 +20,13 @@
     <link rel="stylesheet" href="/css/styles.css" />
 </head>
 
-<body>
+<body class="landing-page">
+    <div class="scroll-progress" aria-hidden="true"></div>
     <header class="site-header">
-        <a class="brand" href="#top" data-site-brand>KidsGo!</a>
+        <a class="brand" href="#top">
+            <span class="brand-mark" aria-hidden="true"></span>
+            <span data-site-brand>KidsGo!</span>
+        </a>
         <nav class="site-nav">
             <a href="#como-funciona">Cómo funciona</a>
             <a href="#audiencias">Comunidad</a>
@@ -38,6 +42,10 @@
 
     <main class="scroll-page" id="top">
         <section class="hero-section">
+            <div class="hero-backdrop" aria-hidden="true">
+                <span></span>
+                <span></span>
+            </div>
             <div class="hero-copy">
                 <p id="heroEyebrow" class="eyebrow" data-i18n="hero.eyebrow">Smart School Mobility</p>
                 <h1 id="heroTitle" data-i18n="hero.title">El transporte escolar, ahora más inteligente.</h1>
@@ -55,6 +63,20 @@
                     <span data-i18n="hero.highlight1">Monitoreo en tiempo real</span>
                     <span data-i18n="hero.highlight2">Comunicación centralizada</span>
                     <span data-i18n="hero.highlight3">Alertas y reportes</span>
+                </div>
+                <div class="journey-status" aria-label="Estado del viaje escolar">
+                    <div>
+                        <span>06:42</span>
+                        <strong>Salida confirmada</strong>
+                    </div>
+                    <div>
+                        <span>07:08</span>
+                        <strong>Próximo a parada</strong>
+                    </div>
+                    <div>
+                        <span>07:24</span>
+                        <strong>Llegada al colegio</strong>
+                    </div>
                 </div>
             </div>
             <div class="hero-media">
@@ -74,6 +96,14 @@
                         <div class="route-card route-card--bottom">
                             <strong>Alerta segura</strong>
                             <span>Familia y colegio conectados</span>
+                        </div>
+                        <div class="phone-preview" aria-label="Vista de la app KidsGo">
+                            <div class="phone-preview__bar"></div>
+                            <div class="phone-preview__map">
+                                <span></span>
+                            </div>
+                            <strong>Ruta Maquilishuat</strong>
+                            <p>El transporte está a 5 min de la parada.</p>
                         </div>
                     </div>
                 </div>

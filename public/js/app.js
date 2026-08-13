@@ -469,25 +469,56 @@ function createTextBlock(value) {
     return fragment;
 }
 
+function splitHeadingLine(line) {
+    const normalizedLine = String(line || '').trim();
+    const colonIndex = normalizedLine.indexOf(':');
+    if (colonIndex > 0 && colonIndex < 48) {
+        return {
+            label: normalizedLine.slice(0, colonIndex).trim(),
+            text: normalizedLine.slice(colonIndex + 1).trim()
+        };
+    }
+
+    const dashMatch = normalizedLine.match(/^([0-9]{2}|Etapa\s+[0-9]+)\s+-\s+(.+)$/i);
+    if (dashMatch) {
+        return {
+            label: dashMatch[1],
+            text: dashMatch[2]
+        };
+    }
+
+    return { label: '', text: normalizedLine };
+}
+
 function createList(value, className = '') {
     const list = document.createElement('ul');
     if (className) {
         list.className = className;
     }
 
-    splitLines(value).forEach((line) => {
+    splitLines(value).forEach((line, index) => {
+        const parts = splitHeadingLine(line);
         const item = document.createElement('li');
-        item.textContent = line;
+        item.style.setProperty('--item-index', index);
+        if (parts.label) {
+            const label = document.createElement('strong');
+            label.textContent = parts.label;
+            const text = document.createElement('span');
+            text.textContent = parts.text;
+            item.append(label, text);
+        } else {
+            item.textContent = parts.text;
+        }
         list.appendChild(item);
     });
 
     return list;
 }
 
-function createContentSection({ id, eyebrow, title, body, list, variant = '' }) {
+function createContentSection({ id, eyebrow, title, body, list, variant = '', motif = 'route' }) {
     const section = document.createElement('section');
     section.id = id;
-    section.className = `content-section ${variant}`.trim();
+    section.className = `content-section ${variant} motif-${motif}`.trim();
 
     const heading = document.createElement('div');
     heading.className = 'section-heading';
@@ -502,7 +533,14 @@ function createContentSection({ id, eyebrow, title, body, list, variant = '' }) 
     const titleElement = document.createElement('h2');
     titleElement.textContent = title;
     heading.appendChild(titleElement);
-    section.appendChild(heading);
+    const art = document.createElement('div');
+    art.className = 'section-art';
+    art.setAttribute('aria-hidden', 'true');
+    art.innerHTML = '<span></span><span></span><span></span>';
+
+    const shell = document.createElement('div');
+    shell.className = 'section-shell';
+    shell.append(heading, art);
 
     const bodyElement = document.createElement('div');
     bodyElement.className = 'rich-copy';
@@ -515,7 +553,8 @@ function createContentSection({ id, eyebrow, title, body, list, variant = '' }) 
         bodyElement.appendChild(createList(list, 'feature-list'));
     }
 
-    section.appendChild(bodyElement);
+    shell.appendChild(bodyElement);
+    section.appendChild(shell);
     return section;
 }
 
@@ -528,26 +567,29 @@ function renderSiteSections(content) {
     container.innerHTML = '';
 
     const sections = [
-        { id: 'marca', eyebrow: content.brandTagline, title: content.brandName, body: `${content.brandConcept}\n\n${content.tone}`, list: content.brandPersonality },
-        { id: 'problema', eyebrow: 'El problema', title: content.problemTitle, body: content.problemBody, variant: 'alt-section' },
-        { id: 'solucion', eyebrow: 'La solución', title: content.solutionTitle, body: content.solutionBody },
-        { id: 'como-funciona', eyebrow: 'Cómo funciona', title: content.howTitle, list: content.howSteps, variant: 'alt-section' },
-        { id: 'funciones', eyebrow: 'Funciones actuales', title: content.featuresTitle, list: content.features },
-        { id: 'innovacion', eyebrow: 'Innovación', title: content.innovationTitle, body: content.innovationBody, variant: 'alt-section' },
-        { id: 'smartband', eyebrow: 'En desarrollo', title: content.smartBandTitle, body: content.smartBandBody },
-        { id: 'smart-campus', eyebrow: 'Visión futura', title: content.smartCampusTitle, body: content.smartCampusBody, variant: 'alt-section' },
-        { id: 'audiencias', eyebrow: 'Comunidad escolar', title: content.audiencesTitle, list: content.audiences },
-        { id: 'seguridad', eyebrow: 'Seguridad y privacidad', title: content.securityTitle, body: content.securityBody, variant: 'alt-section' },
-        { id: 'tecnologia', eyebrow: 'Tecnología', title: content.technologyTitle, body: content.technologyBody },
-        { id: 'etapas', eyebrow: 'Desarrollo por etapas', title: content.roadmapTitle, list: content.roadmap, variant: 'alt-section' },
-        { id: 'impacto', eyebrow: 'Impacto', title: content.impactTitle, body: content.impactBody },
-        { id: 'sobre-kidsgo', eyebrow: 'Sobre KidsGo!', title: content.aboutTitle, body: `${content.aboutBody}\n\nMisión: ${content.mission}\n\nVisión: ${content.vision}`, variant: 'alt-section' },
-        { id: 'valor', eyebrow: 'Propuesta de valor', title: 'Una comunidad escolar más conectada.', list: content.valueProposition },
-        { id: 'faq', eyebrow: 'Preguntas frecuentes', title: 'Respuestas claras para empezar.', list: content.faq, variant: 'alt-section' }
+        { id: 'marca', eyebrow: content.brandTagline, title: content.brandName, body: `${content.brandConcept}\n\n${content.tone}`, list: content.brandPersonality, motif: 'brand' },
+        { id: 'problema', eyebrow: 'El problema', title: content.problemTitle, body: content.problemBody, variant: 'alt-section', motif: 'pulse' },
+        { id: 'solucion', eyebrow: 'La solución', title: content.solutionTitle, body: content.solutionBody, motif: 'hub' },
+        { id: 'como-funciona', eyebrow: 'Cómo funciona', title: content.howTitle, list: content.howSteps, variant: 'alt-section', motif: 'timeline' },
+        { id: 'funciones', eyebrow: 'Funciones actuales', title: content.featuresTitle, list: content.features, motif: 'grid' },
+        { id: 'innovacion', eyebrow: 'Innovación', title: content.innovationTitle, body: content.innovationBody, variant: 'alt-section', motif: 'spark' },
+        { id: 'smartband', eyebrow: 'En desarrollo', title: content.smartBandTitle, body: content.smartBandBody, motif: 'band' },
+        { id: 'smart-campus', eyebrow: 'Visión futura', title: content.smartCampusTitle, body: content.smartCampusBody, variant: 'alt-section', motif: 'campus' },
+        { id: 'audiencias', eyebrow: 'Comunidad escolar', title: content.audiencesTitle, list: content.audiences, motif: 'people' },
+        { id: 'seguridad', eyebrow: 'Seguridad y privacidad', title: content.securityTitle, body: content.securityBody, variant: 'alt-section', motif: 'shield' },
+        { id: 'tecnologia', eyebrow: 'Tecnología', title: content.technologyTitle, body: content.technologyBody, motif: 'tech' },
+        { id: 'etapas', eyebrow: 'Desarrollo por etapas', title: content.roadmapTitle, list: content.roadmap, variant: 'alt-section', motif: 'timeline' },
+        { id: 'impacto', eyebrow: 'Impacto', title: content.impactTitle, body: content.impactBody, motif: 'impact' },
+        { id: 'sobre-kidsgo', eyebrow: 'Sobre KidsGo!', title: content.aboutTitle, body: `${content.aboutBody}\n\nMisión: ${content.mission}\n\nVisión: ${content.vision}`, variant: 'alt-section', motif: 'origin' },
+        { id: 'valor', eyebrow: 'Propuesta de valor', title: 'Una comunidad escolar más conectada.', list: content.valueProposition, motif: 'value' },
+        { id: 'faq', eyebrow: 'Preguntas frecuentes', title: 'Respuestas claras para empezar.', list: content.faq, variant: 'alt-section', motif: 'answers' }
     ];
 
-    sections.forEach((section) => {
-        container.appendChild(createContentSection(section));
+    sections.forEach((section, index) => {
+        container.appendChild(createContentSection({
+            ...section,
+            variant: `${section.variant || ''} ${index % 2 === 1 ? 'is-reversed' : ''}`.trim()
+        }));
     });
 
     setupRevealSections();
@@ -589,6 +631,22 @@ function setupRevealSections() {
     }, { threshold: 0.18 });
 
     sections.forEach((section) => observer.observe(section));
+}
+
+function setupScrollProgress() {
+    const progress = document.querySelector('.scroll-progress');
+    if (!progress) {
+        return;
+    }
+
+    const updateProgress = () => {
+        const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+        const progressValue = maxScroll > 0 ? window.scrollY / maxScroll : 0;
+        progress.style.transform = `scaleX(${Math.min(Math.max(progressValue, 0), 1)})`;
+    };
+
+    updateProgress();
+    window.addEventListener('scroll', updateProgress, { passive: true });
 }
 
 function renderContentSettings(language = getPreferredLanguage()) {
@@ -1098,6 +1156,7 @@ if (window.location.pathname === '/' || window.location.pathname === '/index.htm
     setupLanguageSwitcher();
     setupPwa();
     setupQuickActions();
+    setupScrollProgress();
 }
 
 if (window.location.pathname === '/parent.html' || window.location.pathname === '/driver.html') {
