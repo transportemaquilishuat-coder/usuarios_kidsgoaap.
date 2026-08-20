@@ -298,6 +298,6 @@ self.addEventListener('fetch', (event) => {
     });
 });
 
-server.listen(port, () => {
-    console.log(`Servidor de la web listo en http://localhost:${port}`);
+server.listen(port, '0.0.0.0', () => {
+    console.log(`Servidor de la web listo en puerto ${port}`);
 });
