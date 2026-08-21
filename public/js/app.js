@@ -580,14 +580,6 @@ function createSectionArt({ image, title, videoUrl }) {
         }
 
         art.appendChild(video);
-    } else if (videoUrl) {
-        const link = document.createElement('a');
-        link.className = 'section-art__link';
-        link.href = videoUrl;
-        link.target = '_blank';
-        link.rel = 'noopener noreferrer';
-        link.textContent = 'Ver video gratuito';
-        art.appendChild(link);
     }
 
     return art;
