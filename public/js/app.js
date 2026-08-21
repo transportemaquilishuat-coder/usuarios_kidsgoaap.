@@ -262,6 +262,18 @@ const SITE_CONTENT_FIELDS = [
     { key: 'heroMessage', label: 'Mensaje emocional', type: 'textarea' },
     { key: 'heroImage', label: 'URL de foto principal', type: 'url' },
     { key: 'heroVideo', label: 'URL de video promocional', type: 'url' },
+    { key: 'problemImage', label: 'Imagen: problema / rutina familiar', type: 'url' },
+    { key: 'solutionImage', label: 'Imagen: alumnos subiendo al transporte', type: 'url' },
+    { key: 'howImage', label: 'Imagen: ruta o seguimiento', type: 'url' },
+    { key: 'featuresImage', label: 'Imagen: funciones / app', type: 'url' },
+    { key: 'innovationImage', label: 'Imagen: innovacion escolar', type: 'url' },
+    { key: 'smartBandImage', label: 'Imagen: SmartBand con tecnologia LoRa', type: 'url' },
+    { key: 'smartCampusImage', label: 'Imagen: Smart Campus', type: 'url' },
+    { key: 'audiencesImage', label: 'Imagen: carpool y comunidad escolar', type: 'url' },
+    { key: 'securityImage', label: 'Imagen: seguridad y confianza', type: 'url' },
+    { key: 'technologyImage', label: 'Imagen: tecnologia / IoT', type: 'url' },
+    { key: 'impactImage', label: 'Imagen: impacto / ninos sonriendo', type: 'url' },
+    { key: 'featuredVideoUrl', label: 'Video gratuito recomendado (Pexels, Pixabay, YouTube o MP4)', type: 'url' },
     { key: 'primaryCta', label: 'CTA principal', type: 'text' },
     { key: 'schoolCta', label: 'CTA colegios', type: 'text' },
     { key: 'transportCta', label: 'CTA transportistas', type: 'text' },
@@ -311,8 +323,20 @@ const DEFAULT_SITE_CONTENT = {
         heroTitle: 'El transporte escolar, ahora más inteligente.',
         heroDescription: 'KidsGo! conecta a familias, colegios y transporte escolar para que cada trayecto sea más seguro, organizado y tranquilo.',
         heroMessage: 'Tú sabes dónde están tus hijos. Nosotros ayudamos a que lleguen bien. Desde que salen de casa hasta que llegan al colegio, KidsGo! acompaña cada trayecto y mantiene conectados a quienes más importan.',
-        heroImage: '/img/WhatsApp Image 2026-07-26 at 1.59.57 PM.jpeg',
-        heroVideo: 'https://www.youtube.com/embed/ScMzIvxBSi4?rel=0',
+        heroImage: '/img/kidsgo-school-bus-boarding.png',
+        heroVideo: 'https://www.pexels.com/video/children-boarding-school-bus-in-scenic-landscape-38750745/',
+        problemImage: '/img/kidsgo-smiling-students.png',
+        solutionImage: '/img/kidsgo-school-bus-boarding.png',
+        howImage: '/img/kidsgo-school-bus-boarding.png',
+        featuresImage: '/img/kidsgo-carpool-community.png',
+        innovationImage: '/img/kidsgo-lora-smartband.png',
+        smartBandImage: '/img/kidsgo-lora-smartband.png',
+        smartCampusImage: '/img/kidsgo-lora-smartband.png',
+        audiencesImage: '/img/kidsgo-carpool-community.png',
+        securityImage: '/img/kidsgo-smiling-students.png',
+        technologyImage: '/img/kidsgo-lora-smartband.png',
+        impactImage: '/img/kidsgo-smiling-students.png',
+        featuredVideoUrl: 'https://www.pexels.com/video/children-boarding-school-bus-in-scenic-landscape-38750745/',
         primaryCta: 'Quiero conocer KidsGo!',
         schoolCta: 'Soy un colegio',
         transportCta: 'Soy transportista',
@@ -515,7 +539,61 @@ function createList(value, className = '') {
     return list;
 }
 
-function createContentSection({ id, eyebrow, title, body, list, variant = '', motif = 'route' }) {
+function isEmbeddableVideoUrl(value) {
+    return /\.(mp4|webm|ogg)(\?.*)?$/i.test(String(value || '')) || /youtube\.com\/embed|player\.vimeo\.com/i.test(String(value || ''));
+}
+
+function createSectionArt({ image, title, videoUrl }) {
+    const art = document.createElement('div');
+    art.className = 'section-art';
+
+    if (image) {
+        const imageElement = document.createElement('img');
+        imageElement.src = image;
+        imageElement.alt = title || 'KidsGo';
+        imageElement.loading = 'lazy';
+        art.appendChild(imageElement);
+    } else {
+        art.setAttribute('aria-hidden', 'true');
+    }
+
+    const overlay = document.createElement('div');
+    overlay.className = 'section-art__overlay';
+    overlay.innerHTML = '<span></span><span></span><span></span><i></i><i></i>';
+    art.appendChild(overlay);
+
+    if (videoUrl && isEmbeddableVideoUrl(videoUrl)) {
+        const video = document.createElement(videoUrl.includes('/embed/') ? 'iframe' : 'video');
+        video.className = 'section-art__video';
+
+        if (video.tagName === 'IFRAME') {
+            video.src = videoUrl;
+            video.title = title || 'Video KidsGo';
+            video.loading = 'lazy';
+            video.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+            video.allowFullscreen = true;
+        } else {
+            video.src = videoUrl;
+            video.controls = true;
+            video.muted = true;
+            video.playsInline = true;
+        }
+
+        art.appendChild(video);
+    } else if (videoUrl) {
+        const link = document.createElement('a');
+        link.className = 'section-art__link';
+        link.href = videoUrl;
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        link.textContent = 'Ver video gratuito';
+        art.appendChild(link);
+    }
+
+    return art;
+}
+
+function createContentSection({ id, eyebrow, title, body, list, image, videoUrl, variant = '', motif = 'route' }) {
     const section = document.createElement('section');
     section.id = id;
     section.className = `content-section ${variant} motif-${motif}`.trim();
@@ -533,10 +611,7 @@ function createContentSection({ id, eyebrow, title, body, list, variant = '', mo
     const titleElement = document.createElement('h2');
     titleElement.textContent = title;
     heading.appendChild(titleElement);
-    const art = document.createElement('div');
-    art.className = 'section-art';
-    art.setAttribute('aria-hidden', 'true');
-    art.innerHTML = '<span></span><span></span><span></span>';
+    const art = createSectionArt({ image, title, videoUrl });
 
     const shell = document.createElement('div');
     shell.className = 'section-shell';
@@ -567,19 +642,19 @@ function renderSiteSections(content) {
     container.innerHTML = '';
 
     const sections = [
-        { id: 'marca', eyebrow: content.brandTagline, title: content.brandName, body: `${content.brandConcept}\n\n${content.tone}`, list: content.brandPersonality, motif: 'brand' },
-        { id: 'problema', eyebrow: 'El problema', title: content.problemTitle, body: content.problemBody, variant: 'alt-section', motif: 'pulse' },
-        { id: 'solucion', eyebrow: 'La solución', title: content.solutionTitle, body: content.solutionBody, motif: 'hub' },
-        { id: 'como-funciona', eyebrow: 'Cómo funciona', title: content.howTitle, list: content.howSteps, variant: 'alt-section', motif: 'timeline' },
-        { id: 'funciones', eyebrow: 'Funciones actuales', title: content.featuresTitle, list: content.features, motif: 'grid' },
-        { id: 'innovacion', eyebrow: 'Innovación', title: content.innovationTitle, body: content.innovationBody, variant: 'alt-section', motif: 'spark' },
-        { id: 'smartband', eyebrow: 'En desarrollo', title: content.smartBandTitle, body: content.smartBandBody, motif: 'band' },
-        { id: 'smart-campus', eyebrow: 'Visión futura', title: content.smartCampusTitle, body: content.smartCampusBody, variant: 'alt-section', motif: 'campus' },
-        { id: 'audiencias', eyebrow: 'Comunidad escolar', title: content.audiencesTitle, list: content.audiences, motif: 'people' },
-        { id: 'seguridad', eyebrow: 'Seguridad y privacidad', title: content.securityTitle, body: content.securityBody, variant: 'alt-section', motif: 'shield' },
-        { id: 'tecnologia', eyebrow: 'Tecnología', title: content.technologyTitle, body: content.technologyBody, motif: 'tech' },
+        { id: 'marca', eyebrow: content.brandTagline, title: content.brandName, body: `${content.brandConcept}\n\n${content.tone}`, list: content.brandPersonality, image: content.impactImage, motif: 'brand' },
+        { id: 'problema', eyebrow: 'El problema', title: content.problemTitle, body: content.problemBody, image: content.problemImage, variant: 'alt-section', motif: 'pulse' },
+        { id: 'solucion', eyebrow: 'La solución', title: content.solutionTitle, body: content.solutionBody, image: content.solutionImage, motif: 'hub' },
+        { id: 'como-funciona', eyebrow: 'Cómo funciona', title: content.howTitle, list: content.howSteps, image: content.howImage, videoUrl: content.featuredVideoUrl, variant: 'alt-section', motif: 'timeline' },
+        { id: 'funciones', eyebrow: 'Funciones actuales', title: content.featuresTitle, list: content.features, image: content.featuresImage, motif: 'grid' },
+        { id: 'innovacion', eyebrow: 'Innovación', title: content.innovationTitle, body: content.innovationBody, image: content.innovationImage, variant: 'alt-section', motif: 'spark' },
+        { id: 'smartband', eyebrow: 'En desarrollo', title: content.smartBandTitle, body: content.smartBandBody, image: content.smartBandImage, motif: 'band' },
+        { id: 'smart-campus', eyebrow: 'Visión futura', title: content.smartCampusTitle, body: content.smartCampusBody, image: content.smartCampusImage, variant: 'alt-section', motif: 'campus' },
+        { id: 'audiencias', eyebrow: 'Comunidad escolar', title: content.audiencesTitle, list: content.audiences, image: content.audiencesImage, motif: 'people' },
+        { id: 'seguridad', eyebrow: 'Seguridad y privacidad', title: content.securityTitle, body: content.securityBody, image: content.securityImage, variant: 'alt-section', motif: 'shield' },
+        { id: 'tecnologia', eyebrow: 'Tecnología', title: content.technologyTitle, body: content.technologyBody, image: content.technologyImage, motif: 'tech' },
         { id: 'etapas', eyebrow: 'Desarrollo por etapas', title: content.roadmapTitle, list: content.roadmap, variant: 'alt-section', motif: 'timeline' },
-        { id: 'impacto', eyebrow: 'Impacto', title: content.impactTitle, body: content.impactBody, motif: 'impact' },
+        { id: 'impacto', eyebrow: 'Impacto', title: content.impactTitle, body: content.impactBody, image: content.impactImage, motif: 'impact' },
         { id: 'sobre-kidsgo', eyebrow: 'Sobre KidsGo!', title: content.aboutTitle, body: `${content.aboutBody}\n\nMisión: ${content.mission}\n\nVisión: ${content.vision}`, variant: 'alt-section', motif: 'origin' },
         { id: 'valor', eyebrow: 'Propuesta de valor', title: 'Una comunidad escolar más conectada.', list: content.valueProposition, motif: 'value' },
         { id: 'faq', eyebrow: 'Preguntas frecuentes', title: 'Respuestas claras para empezar.', list: content.faq, variant: 'alt-section', motif: 'answers' }
@@ -1165,3 +1240,4 @@ if (window.location.pathname === '/parent.html' || window.location.pathname === 
 }
 
 applyTranslations(getPreferredLanguage());
+

@@ -545,9 +545,41 @@ a {
     box-shadow: 0 24px 60px rgba(15, 23, 42, 0.15);
 }
 
+.section-art > img,
+.section-art__video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    object-fit: cover;
+}
+
+.section-art > img {
+    filter: saturate(1.08) contrast(1.04);
+}
+
+.section-art::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background:
+        linear-gradient(180deg, rgba(13, 13, 13, 0.12), rgba(13, 13, 13, 0.68)),
+        radial-gradient(circle at 28% 28%, rgba(16, 185, 129, 0.26), transparent 10rem),
+        radial-gradient(circle at 78% 68%, rgba(245, 158, 11, 0.22), transparent 9rem);
+}
+
+.section-art__overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+}
+
 .section-art span {
     position: absolute;
     border-radius: 999px;
+    z-index: 2;
 }
 
 .section-art span:first-child {
@@ -591,6 +623,47 @@ a {
 .motif-tech .section-art span:last-child {
     border-radius: 26px;
     transform: rotate(10deg);
+}
+
+.section-art__overlay i {
+    position: absolute;
+    z-index: 2;
+    width: 10px;
+    height: 10px;
+    border-radius: 999px;
+    background: var(--primary);
+    box-shadow: 0 0 0 10px rgba(16, 185, 129, 0.14), 0 0 28px rgba(16, 185, 129, 0.48);
+    animation: floatSoft 4.6s ease-in-out infinite;
+}
+
+.section-art__overlay i:first-of-type {
+    left: 22%;
+    top: 24%;
+}
+
+.section-art__overlay i:last-of-type {
+    right: 18%;
+    bottom: 24%;
+    background: var(--accent);
+    box-shadow: 0 0 0 10px rgba(245, 158, 11, 0.14), 0 0 28px rgba(245, 158, 11, 0.42);
+    animation-delay: 900ms;
+}
+
+.section-art__link {
+    position: absolute;
+    right: 1rem;
+    bottom: 1rem;
+    z-index: 3;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    padding: 0.65rem 0.9rem;
+    background: rgba(255, 255, 255, 0.9);
+    color: #111827;
+    font-size: 0.82rem;
+    font-weight: 800;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.24);
 }
 
 .alt-section {
