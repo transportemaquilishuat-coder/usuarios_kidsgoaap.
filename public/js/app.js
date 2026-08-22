@@ -4,7 +4,7 @@ const role = params.get('role');
 const translations = {
     es: {
         page: { title: 'KidsGo! | Smart School Mobility' },
-        nav: { services: 'Servicios', benefits: 'Beneficios', contact: 'Contacto' },
+        nav: { services: 'Servicios', benefits: 'Beneficios', how: 'Cómo funciona', community: 'Comunidad', smartband: 'SmartBand', security: 'Seguridad', contact: 'Contacto' },
         hero: {
             eyebrow: 'Smart School Mobility',
             title: 'El transporte escolar, ahora más inteligente.',
@@ -21,6 +21,21 @@ const translations = {
             monitoring: 'Monitoreo continuo',
             visibility: 'Visibilidad operativa',
             alerts: 'Alertas críticas'
+        },
+        landing: {
+            departureConfirmed: 'Salida confirmada',
+            nearStop: 'Próximo a parada',
+            schoolArrival: 'Llegada al colegio',
+            routeActive: 'Ruta activa',
+            routeNearby: 'Transporte próximo a la parada',
+            safeAlert: 'Alerta segura',
+            connectedFamily: 'Familia y colegio conectados',
+            previewRoute: 'Ruta Maquilishuat',
+            previewStatus: 'El transporte está a 5 min de la parada.',
+            mediaText: 'Safe School Transport con una experiencia visual moderna, cercana y en movimiento.',
+            gpsTracking: 'Seguimiento de rutas',
+            familyInfo: 'Información para familias',
+            iotInnovation: 'Innovación en desarrollo'
         },
         services: {
             eyebrow: 'Servicios y funciones',
@@ -127,7 +142,7 @@ const translations = {
     },
     en: {
         page: { title: 'KidsGo! | Smart School Mobility' },
-        nav: { services: 'Services', benefits: 'Benefits', contact: 'Contact' },
+        nav: { services: 'Services', benefits: 'Benefits', how: 'How it works', community: 'Community', smartband: 'SmartBand', security: 'Safety', contact: 'Contact' },
         hero: {
             eyebrow: 'School transportation platform',
             title: 'More control, less uncertainty on every trip.',
@@ -144,6 +159,21 @@ const translations = {
             monitoring: 'Continuous monitoring',
             visibility: 'Operational visibility',
             alerts: 'Critical alerts'
+        },
+        landing: {
+            departureConfirmed: 'Departure confirmed',
+            nearStop: 'Approaching stop',
+            schoolArrival: 'Arrived at school',
+            routeActive: 'Active route',
+            routeNearby: 'Transportation approaching the stop',
+            safeAlert: 'Safe alert',
+            connectedFamily: 'Family and school connected',
+            previewRoute: 'Maquilishuat Route',
+            previewStatus: 'Transportation is 5 min from the stop.',
+            mediaText: 'Safe School Transport with a modern, friendly and moving visual experience.',
+            gpsTracking: 'Route tracking',
+            familyInfo: 'Information for families',
+            iotInnovation: 'Innovation in development'
         },
         services: {
             eyebrow: 'Services and features',
@@ -376,6 +406,52 @@ const DEFAULT_SITE_CONTENT = {
     }
 };
 
+DEFAULT_SITE_CONTENT.en = {
+    ...DEFAULT_SITE_CONTENT.es,
+    brandConcept: 'KidsGo! represents movement, safety, connection and peace of mind. When your children are on the move, you want to know that everything is okay.',
+    brandPersonality: 'Friendly\nModern\nSafe\nDynamic\nInnovative\nFamily-focused\nReliable\nOptimistic',
+    tone: 'KidsGo! speaks to families in a human and clear way. Instead of explaining complex technology, it turns every feature into peace of mind, organization and simple decisions for parents, schools and transport providers.',
+    heroTitle: 'School transportation, now smarter.',
+    heroDescription: 'KidsGo! connects families, schools and school transportation so every trip can be safer, more organized and calmer.',
+    heroMessage: 'You know where your children are. We help make sure they arrive safely. From home to school, KidsGo! supports every trip and keeps the people who matter most connected.',
+    primaryCta: 'I want to learn about KidsGo!',
+    schoolCta: 'I am a school',
+    transportCta: 'I am a transport provider',
+    problemTitle: 'We know every morning can feel like a race against time.',
+    problemBody: 'Is the transportation already on its way?\nWhere is the bus?\nDid it arrive at school?\nIs it close to the stop?\nDo we need to call the driver or send another WhatsApp message?\n\nKidsGo! was created to make all of this simpler: fewer calls, fewer messages, less uncertainty, more information, more organization and more peace of mind.',
+    solutionTitle: 'All school transportation in one place.',
+    solutionBody: 'KidsGo! connects families, students, schools and transport providers in one platform.\n\nFor parents: check your child\'s trip and get information without asking where the bus is.\nFor schools: view and organize school transportation from a platform designed for education.\nFor transport providers: manage routes and communicate important events in a simple, safe way.\nFor students: a more organized, safe transportation experience adapted to school life.',
+    howTitle: 'That simple.',
+    howSteps: '01 - The route starts: the driver begins the trip and KidsGo! records the progress.\n02 - KidsGo! calculates proximity: the platform identifies when transportation is approaching the selected point.\n03 - Parents receive information: the family checks the status from the app.\n04 - The student receives the alert: technology in development will allow vibration and light alerts.\n05 - Everyone is ready: less waiting, fewer calls, less noise and more organization.',
+    featuresTitle: 'Everything you need for more connected school transportation.',
+    features: 'Transportation tracking: check the location and status of the route.\nParent alerts: receive information when transportation is approaching or when an important event happens.\nRoute management: organize trips efficiently.\nSchool view: get a general view of the transportation system and its routes.\nFamily connection: more organized communication between families, schools and school transportation.\nCarpool: coordinate shared rides among families in the school community.\nPoints system: incentives for shared transportation initiatives.',
+    innovationTitle: 'And this is only the beginning.',
+    innovationBody: 'KidsGo! already solves school mobility needs and is building, step by step, a broader platform to support the student school experience.',
+    smartBandTitle: 'One smart band. Many possibilities.',
+    smartBandBody: 'In development: KidsGo! SmartBand will be a smart wristband designed for students. Its first mission will be to alert them when transportation is about to arrive through vibration and light.\n\nLoRa technology is also being researched for long-range, low-power local alerts, without necessarily depending on Wi-Fi or cellular connection.',
+    smartCampusTitle: 'From school transportation to Smart Campus.',
+    smartCampusBody: 'In development: the same wristband that helps students know their transportation is arriving may become a tool for everyday life at school.\n\nFuture possibilities: digital identity, attendance, access control, library, cafeteria, activities and other school services.',
+    audiencesTitle: 'KidsGo! for every school community.',
+    audiences: 'For parents: more peace of mind, organization, communication and autonomy for their children.\nFor schools: route visibility, transportation management, alerts, centralized information and future Smart Campus integration.\nFor transport providers: more organized routes, vehicle location, family communication, alerts, passengers and event history.\nFor students: less waiting, less confusion, more information, more autonomy and more safety.',
+    securityTitle: 'Technology matters when it creates trust.',
+    securityBody: 'We design KidsGo! with student safety and privacy in mind.\n\nPrivacy: information must be handled responsibly.\nSafety: the platform includes protection and access control mechanisms.\nTransparency: families should know what information is collected and why it is used.\nResponsibility: technology supports families and schools, it does not replace their judgment.',
+    technologyTitle: 'Technology working behind the scenes.',
+    technologyBody: 'KidsGo! combines mobile apps, cloud services, geolocation, wireless communications and smart devices.\n\nTechnologies explored: GPS, geolocation, geofencing, LoRa, NFC, BLE, IoT, cloud computing, mobile apps and notification systems.',
+    roadmapTitle: 'We are building KidsGo! step by step.',
+    roadmap: 'Stage 1 - Mobility: available / MVP. School transportation platform.\nStage 2 - Smart alerts: in development.\nStage 3 - SmartBand: in development. Smart wristband with low-power wireless communication.\nStage 4 - Digital identity: in development.\nStage 5 - School services: in development. Cafeteria, library, attendance and other services.\nStage 6 - Smart Campus: future vision.',
+    impactTitle: 'Better school transportation also means a better city.',
+    impactBody: 'Every organized school vehicle is an opportunity to reduce unnecessary trips, improve coordination and use resources better.\n\nKidsGo! seeks to reduce congestion around schools, shorten waiting times, make communication easier, promote shared transportation and improve the family experience.',
+    aboutTitle: 'We were born from a real problem.',
+    aboutBody: 'KidsGo! was born from observing something ordinary: every day, thousands of families need to coordinate transportation for their children to and from school. We saw calls, messages, waiting and manual processes. Then we asked ourselves: what if we could make all of this simpler?',
+    mission: 'Make every school trip safer, more connected and simpler.',
+    vision: 'Build the mobility and smart services platform that connects educational communities.',
+    valueProposition: 'For families: more peace of mind.\nFor schools: more control and organization.\nFor transport providers: more efficiency.\nFor students: more autonomy.\nFor everyone: a more connected school community.',
+    faq: 'What is KidsGo!? KidsGo! is an education technology platform that connects families, schools and school transportation.\nCan I see where the transportation is? Yes, the platform is designed for route tracking and transportation status.\nIs the SmartBand available now? It is currently in research and development.\nDoes the wristband need Internet? We are developing local alerts that can work without depending directly on Wi-Fi or cellular connection.\nCan I use KidsGo! at my school? Yes, KidsGo! is designed for schools, families and school transportation providers.',
+    finalCtaTitle: 'Your child\'s next trip can be smarter.',
+    finalCtaBody: 'Join the new generation of school mobility.',
+    footerBody: 'KidsGo! - Smart School Mobility\nEl Salvador\nEmail: dguzman@kidsgoapp.com\nPhone: 71966141\nWebsite: kidsgoapp.com\nLegal: Privacy Policy, Terms and Conditions, Cookie Policy and Data Protection.'
+};
+
 function readStoredUser() {
     try {
         return JSON.parse(localStorage.getItem('transporteEscolarUser') || '{}');
@@ -469,7 +545,7 @@ function getActiveSiteContent(language = getPreferredLanguage()) {
     const settings = loadContentSettings();
     return {
         ...getDefaultSiteContent(language),
-        ...(settings[language] || settings.es || {})
+        ...(settings[language] || {})
     };
 }
 
@@ -625,31 +701,76 @@ function createContentSection({ id, eyebrow, title, body, list, image, videoUrl,
     return section;
 }
 
-function renderSiteSections(content) {
+function renderSiteSections(content, language = getPreferredLanguage()) {
     const container = document.getElementById('siteContentSections');
     if (!container) {
         return;
     }
 
     container.innerHTML = '';
+    const sectionLabels = {
+        es: {
+            problem: 'El problema',
+            solution: 'La solución',
+            how: 'Cómo funciona',
+            features: 'Funciones actuales',
+            innovation: 'Innovación',
+            inDevelopment: 'En desarrollo',
+            futureVision: 'Visión futura',
+            community: 'Comunidad escolar',
+            security: 'Seguridad y privacidad',
+            technology: 'Tecnología',
+            roadmap: 'Desarrollo por etapas',
+            impact: 'Impacto',
+            about: 'Sobre KidsGo!',
+            value: 'Propuesta de valor',
+            valueTitle: 'Una comunidad escolar más conectada.',
+            faq: 'Preguntas frecuentes',
+            faqTitle: 'Respuestas claras para empezar.',
+            mission: 'Misión',
+            vision: 'Visión'
+        },
+        en: {
+            problem: 'The problem',
+            solution: 'The solution',
+            how: 'How it works',
+            features: 'Current features',
+            innovation: 'Innovation',
+            inDevelopment: 'In development',
+            futureVision: 'Future vision',
+            community: 'School community',
+            security: 'Safety and privacy',
+            technology: 'Technology',
+            roadmap: 'Development stages',
+            impact: 'Impact',
+            about: 'About KidsGo!',
+            value: 'Value proposition',
+            valueTitle: 'A more connected school community.',
+            faq: 'Frequently asked questions',
+            faqTitle: 'Clear answers to get started.',
+            mission: 'Mission',
+            vision: 'Vision'
+        }
+    };
+    const labels = sectionLabels[language] || sectionLabels.es;
 
     const sections = [
         { id: 'marca', eyebrow: content.brandTagline, title: content.brandName, body: `${content.brandConcept}\n\n${content.tone}`, list: content.brandPersonality, image: content.impactImage, motif: 'brand' },
-        { id: 'problema', eyebrow: 'El problema', title: content.problemTitle, body: content.problemBody, image: content.problemImage, variant: 'alt-section', motif: 'pulse' },
-        { id: 'solucion', eyebrow: 'La solución', title: content.solutionTitle, body: content.solutionBody, image: content.solutionImage, motif: 'hub' },
-        { id: 'como-funciona', eyebrow: 'Cómo funciona', title: content.howTitle, list: content.howSteps, image: content.howImage, videoUrl: content.featuredVideoUrl, variant: 'alt-section', motif: 'timeline' },
-        { id: 'funciones', eyebrow: 'Funciones actuales', title: content.featuresTitle, list: content.features, image: content.featuresImage, motif: 'grid' },
-        { id: 'innovacion', eyebrow: 'Innovación', title: content.innovationTitle, body: content.innovationBody, image: content.innovationImage, variant: 'alt-section', motif: 'spark' },
-        { id: 'smartband', eyebrow: 'En desarrollo', title: content.smartBandTitle, body: content.smartBandBody, image: content.smartBandImage, motif: 'band' },
-        { id: 'smart-campus', eyebrow: 'Visión futura', title: content.smartCampusTitle, body: content.smartCampusBody, image: content.smartCampusImage, variant: 'alt-section', motif: 'campus' },
-        { id: 'audiencias', eyebrow: 'Comunidad escolar', title: content.audiencesTitle, list: content.audiences, image: content.audiencesImage, motif: 'people' },
-        { id: 'seguridad', eyebrow: 'Seguridad y privacidad', title: content.securityTitle, body: content.securityBody, image: content.securityImage, variant: 'alt-section', motif: 'shield' },
-        { id: 'tecnologia', eyebrow: 'Tecnología', title: content.technologyTitle, body: content.technologyBody, image: content.technologyImage, motif: 'tech' },
-        { id: 'etapas', eyebrow: 'Desarrollo por etapas', title: content.roadmapTitle, list: content.roadmap, variant: 'alt-section', motif: 'timeline' },
-        { id: 'impacto', eyebrow: 'Impacto', title: content.impactTitle, body: content.impactBody, image: content.impactImage, motif: 'impact' },
-        { id: 'sobre-kidsgo', eyebrow: 'Sobre KidsGo!', title: content.aboutTitle, body: `${content.aboutBody}\n\nMisión: ${content.mission}\n\nVisión: ${content.vision}`, variant: 'alt-section', motif: 'origin' },
-        { id: 'valor', eyebrow: 'Propuesta de valor', title: 'Una comunidad escolar más conectada.', list: content.valueProposition, motif: 'value' },
-        { id: 'faq', eyebrow: 'Preguntas frecuentes', title: 'Respuestas claras para empezar.', list: content.faq, variant: 'alt-section', motif: 'answers' }
+        { id: 'problema', eyebrow: labels.problem, title: content.problemTitle, body: content.problemBody, image: content.problemImage, variant: 'alt-section', motif: 'pulse' },
+        { id: 'solucion', eyebrow: labels.solution, title: content.solutionTitle, body: content.solutionBody, image: content.solutionImage, motif: 'hub' },
+        { id: 'como-funciona', eyebrow: labels.how, title: content.howTitle, list: content.howSteps, image: content.howImage, videoUrl: content.featuredVideoUrl, variant: 'alt-section', motif: 'timeline' },
+        { id: 'funciones', eyebrow: labels.features, title: content.featuresTitle, list: content.features, image: content.featuresImage, motif: 'grid' },
+        { id: 'innovacion', eyebrow: labels.innovation, title: content.innovationTitle, body: content.innovationBody, image: content.innovationImage, variant: 'alt-section', motif: 'spark' },
+        { id: 'smartband', eyebrow: labels.inDevelopment, title: content.smartBandTitle, body: content.smartBandBody, image: content.smartBandImage, motif: 'band' },
+        { id: 'smart-campus', eyebrow: labels.futureVision, title: content.smartCampusTitle, body: content.smartCampusBody, image: content.smartCampusImage, variant: 'alt-section', motif: 'campus' },
+        { id: 'audiencias', eyebrow: labels.community, title: content.audiencesTitle, list: content.audiences, image: content.audiencesImage, motif: 'people' },
+        { id: 'seguridad', eyebrow: labels.security, title: content.securityTitle, body: content.securityBody, image: content.securityImage, variant: 'alt-section', motif: 'shield' },
+        { id: 'tecnologia', eyebrow: labels.technology, title: content.technologyTitle, body: content.technologyBody, image: content.technologyImage, motif: 'tech' },
+        { id: 'etapas', eyebrow: labels.roadmap, title: content.roadmapTitle, list: content.roadmap, variant: 'alt-section', motif: 'timeline' },
+        { id: 'impacto', eyebrow: labels.impact, title: content.impactTitle, body: content.impactBody, image: content.impactImage, motif: 'impact' },
+        { id: 'sobre-kidsgo', eyebrow: labels.about, title: content.aboutTitle, body: `${content.aboutBody}\n\n${labels.mission}: ${content.mission}\n\n${labels.vision}: ${content.vision}`, variant: 'alt-section', motif: 'origin' },
+        { id: 'valor', eyebrow: labels.value, title: labels.valueTitle, list: content.valueProposition, motif: 'value' },
+        { id: 'faq', eyebrow: labels.faq, title: labels.faqTitle, list: content.faq, variant: 'alt-section', motif: 'answers' }
     ];
 
     sections.forEach((section, index) => {
@@ -775,7 +896,7 @@ function renderContentSettings(language = getPreferredLanguage()) {
         metaDescription.setAttribute('content', activeValues.heroDescription);
     }
 
-    renderSiteSections(activeValues);
+    renderSiteSections(activeValues, language);
 
     const contentForm = document.getElementById('contentForm');
     if (!contentForm) {
