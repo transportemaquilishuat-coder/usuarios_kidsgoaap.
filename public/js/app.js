@@ -372,7 +372,7 @@ const DEFAULT_SITE_CONTENT = {
         faq: '¿Qué es KidsGo!? KidsGo! es una plataforma de tecnología educativa que conecta familias, colegios y transporte escolar.\n¿Puedo ver dónde está el transporte? Sí, la plataforma está diseñada para seguimiento de rutas y estado del transporte.\n¿La SmartBand ya está disponible? Actualmente está en fase de investigación y desarrollo.\n¿La pulsera necesita Internet? Estamos desarrollando alertas locales que puedan funcionar sin depender directamente de Wi-Fi o conexión celular.\n¿Puedo utilizar KidsGo! en mi colegio? Sí, KidsGo! está pensado para colegios, familias y proveedores de transporte escolar.',
         finalCtaTitle: 'El próximo viaje de tu hijo puede ser más inteligente.',
         finalCtaBody: 'Únete a la nueva generación de movilidad escolar.',
-        footerBody: 'KidsGo! - Smart School Mobility\nEl Salvador\nCorreo: [correo oficial]\nSitio web: [dominio]\nLegal: Política de Privacidad, Términos y Condiciones, Política de Cookies y Protección de datos.'
+        footerBody: 'KidsGo! - Smart School Mobility\nEl Salvador\nCorreo: dguzman@kidsgoapp.com\nTelefono: 71966141\nSitio web: kidsgoapp.com\nLegal: Política de Privacidad, Términos y Condiciones, Política de Cookies y Protección de datos.'
     }
 };
 
